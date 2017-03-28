@@ -18,18 +18,26 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class CurrentForecastServlet
  */
-@WebServlet("/current")
+@WebServlet("")
 public class CurrentForecastServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String PAGE_BEGIN = "<html>\n" +
             "<head>\n" +
 			"<link rel=\"stylesheet\" type=\"text/css\" href=\"%%STYLESHEET%%\" />\n" +
             "<title>Area Forecast Discussion</title>\n" +
+            "<meta name=\"viewport\" content=\"width=800\">\n" +
             "</head>\n" +
             "<body>\n" +
+            "<div id=\"titlecontainer\">\n" +
+            "<div id=\"title\">\n" +
+            "%%TITLE_HTML%%\n" +
+            "</div>\n" +
+            "</div>\n" +
+            "<div id=\"container\">\n" +
             "<div id=\"content\">\n";
 
     public static final String PAGE_END = "</div>\n" +
+    		"</div>\n" +
     		"</body>\n" +
             "</html>";
 
@@ -83,14 +91,17 @@ public class CurrentForecastServlet extends HttpServlet {
         StringBuilder output = new StringBuilder();
         output.append(PAGE_BEGIN
         		.replace("%%STYLESHEET%%", request.getContextPath() + "/style.css")
-        		.replace("%%BACKGROUND_IMAGE%%", request.getContextPath() + "/images/background.jpg"));
+        		.replace("%%BACKGROUND_IMAGE%%", request.getContextPath() + "/images/background.jpg")
+        		.replace("%%POSITION%%", iOS(request) ? "scroll" : "fixed"));
 
         for (int i = firstLine; i <= lastLine; i++) {
             if (i == firstLine) {
                 // "Area Forecast Discussion" and following lines of header
-                output.append("<h2>").append(contents[i]).append("</h2>").append("\n");
-                output.append("<em>").append(contents[i+1]).append("</em>").append("<br/>").append("\n");
-                output.append("<em>").append(contents[i+2]).append("</em>").append("\n");
+            	StringBuilder title = new StringBuilder();
+                title.append("<h2>").append(contents[i]).append("</h2>").append("\n");
+                title.append("<em>").append(contents[i+1]).append("</em>").append("<br/>").append("\n");
+                title.append("<em>").append(contents[i+2]).append("</em>").append("\n");
+                output.replace(output.indexOf("%%TITLE_HTML%%"), output.indexOf("%%TITLE_HTML%%") + "%%TITLE_HTML%%".length(), title.toString());
                 i += 2;
             } else if (contents[i].contains("ARX WATCHES/WARNINGS/ADVISORIES")) {
                 int j = i+1;
@@ -151,6 +162,11 @@ public class CurrentForecastServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+	}
+	
+	protected boolean iOS(HttpServletRequest req) {
+		String agent = req.getHeader("User-Agent");
+		return agent.contains("iPhone") || agent.contains("iPad") || agent.contains("iPod");
 	}
 
 	/**
