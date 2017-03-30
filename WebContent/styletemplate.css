@@ -43,14 +43,14 @@ body {
 
 #title {
 	color: white;
-	filter: none();
-	width: 90%;
+	filter: none(); 
+	max-width: 80%;
 	margin: auto;
 }
 
 #title h2 {
-	font-size: 3em;
-	letter-spacing: 0.3em;
+	font-size: 2.5em;
+	letter-spacing: 0.1em;
 	
 }
 
