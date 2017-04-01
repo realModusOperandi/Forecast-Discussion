@@ -81,7 +81,7 @@ public class CurrentForecastServlet extends HttpServlet {
         int firstLine = 0, lastLine = 0;
 
         for (int i = 0; i < contents.length; i++) {
-            if (contents[i].equals("Area Forecast Discussion")) {
+            if (contents[i].equalsIgnoreCase("Area Forecast Discussion")) {
                 firstLine = i;
             } else if (contents[i].equals("$$")) {
                 lastLine = i - 2;
@@ -99,15 +99,20 @@ public class CurrentForecastServlet extends HttpServlet {
                 // "Area Forecast Discussion" and following lines of header
             	StringBuilder title = new StringBuilder();
                 title.append("<h2>").append(contents[i]).append("</h2>").append("\n");
-                title.append("<em>").append(contents[i+1]).append("</em>").append("<br/>").append("\n");
-                title.append("<em>").append(contents[i+2]).append("</em>").append("\n");
+                while (!contents[i].equals("")) {
+                	i++;
+                	title.append("<em>").append(contents[i]).append("</em>").append("<br/>").append("\n");
+                }
                 output.replace(output.indexOf("%%TITLE_HTML%%"), output.indexOf("%%TITLE_HTML%%") + "%%TITLE_HTML%%".length(), title.toString());
-                i += 2;
             } else if (contents[i].contains("ARX WATCHES/WARNINGS/ADVISORIES")) {
                 int j = i+1;
                 output.append("<h3>").append(contents[i].substring(1, contents[i].length() - 3)).append("</h3>").append("\n");
                 output.append("<ul>").append("\n");
                 while (!contents[j].equals("&&")) {
+                	if (contents[j].equals("NONE.")) {
+                		output.append("<li>").append("None.").append("</li>").append("\n");
+                		break;
+                	}
                     String[] parts;
                     if ((parts = contents[j].split("\\.\\.\\.")).length == 2) {
                         output.append("<li>").append(states.get(parts[0]));
