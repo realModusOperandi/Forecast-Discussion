@@ -196,8 +196,6 @@ public class CurrentForecastServlet extends HttpServlet {
 		            page += "<li>" + parts[1];
 		        }
 		        
-		    } else if (body[k-1].equals("")){
-		        page += "<li>" + body[sectionEnd];
 		    } else if (body[k+1].equals("")) {
 		        page += body[k] + "</li>" + "\n";
 		    } else if (body[k+1].contains("...")) {
@@ -307,14 +305,13 @@ public class CurrentForecastServlet extends HttpServlet {
 	private int findEndOfParagraph(String[] body, int i) {
 		int paragraphEnd = i;
 		while (!body[paragraphEnd].equals("")) {
-			System.out.println("Skipping: " + body[paragraphEnd]);
 			paragraphEnd++;
 		}
 		return paragraphEnd;
 	}
 
 	private int findEndOfWarnings(String[] body, int start) {
-		int sectionEnd = start+1;
+		int sectionEnd = start;
 		while (!body[sectionEnd].equals("&&")) {
 			sectionEnd++;
 		}
