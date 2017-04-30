@@ -84,31 +84,17 @@ p {
 	font-size: 0.9em;
 }
 
-@media screen and (max-device-width: 799px) and (min-device-width: 500px) {
-	h3 {
-		font-size: 2em;
-	}
-	
-	p, em {
-		font-size: 1.2em;
-	}
-}
-
-@media screen and (max-device-width: 499px) {
-	h2 {
-		font-size: 3.5em;
+@media screen and (max-device-width: 799px) {
+	#title h2 {
+		font-size: 2.5em;
 	}
 	
 	h3 {
-		font-size: 3em;
+		font-size: 1.7em;
 	}
 	
 	p, em {
-		font-size: 2.0em;
-	}
-	
-	em {
-		font-size: 2.0em;
+		font-size: 1.1em;
 	}
 }
 

@@ -122,7 +122,7 @@ public class CurrentForecastServlet extends HttpServlet {
 		page = addHTMLTitle(page, "Area Forecast Discussion");
 		page = addStylesheetLink(page, request.getContextPath() + "/style.css");
 		page = addWebFont(page, "Lora");
-		page = addMobileViewport(page, 800);
+		page = addMobileViewport(page, "device-width");
 		page = addEndHead(page);
 		
 		page = addStartBody(page);
@@ -261,8 +261,12 @@ public class CurrentForecastServlet extends HttpServlet {
 	}
 	
 	private String addMobileViewport(String input, int width) {
-		return input + "<meta name=\"viewport\" content=\"width=" + width + ", initial-scale=2.0\">\n";
+		return input + "<meta name=\"viewport\" content=\"width=" + width + ", initial-scale=1.0\">\n";
 		//return input + "<meta name=\"viewport\" content=\"width=" + width + "\">\n";
+	}
+	
+	private String addMobileViewport(String input, String widthValue) {
+		return input + "<meta name=\"viewport\" content=\"width=" + widthValue + ", initial-scale=1.0\">\n";
 	}
 	
 	private String addStylesheetLink(String input, String styleURL) {
