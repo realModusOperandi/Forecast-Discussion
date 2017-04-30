@@ -42,10 +42,22 @@ public class CurrentForecastServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String productURL = "http://forecast.weather.gov/product.php?site=ARX&issuedby=ARX&product=AFD&format=txt&version=1&glossary=0";
+		Map <String, String[]> parameters = request.getParameterMap();
+		String office = "ARX";
+		if (parameters.containsKey("office")) {
+			office = parameters.get("office")[0];
+		}
 		
+		boolean debug = false;
+		if (parameters.containsKey("debug")) {
+			debug = Boolean.valueOf(parameters.get("debug")[0]);
+		}
+		String productURL = "http://forecast.weather.gov/product.php?site=" + office + "&issuedby=" + office + "&product=AFD&format=txt&version=1&glossary=0";
 		String[] contents = getProductText(productURL);
         String[] body = trimContents(contents);
+        if (debug) {
+        	sendResponse(response, Arrays.stream(body).reduce("", (a, b) -> a + b + "\n"));
+        }
         String page = createPage(request, body);
         sendResponse(response, page);
 	}
@@ -71,7 +83,7 @@ public class CurrentForecastServlet extends HttpServlet {
 		int firstLine = 0, lastLine = 0;
 	
 	    for (int i = 0; i < contents.length; i++) {
-	        if (contents[i].equalsIgnoreCase("Area Forecast Discussion")) {
+	        if (contents[i].startsWith("Area Forecast Discussion")) {
 	            firstLine = i;
 	        } else if (contents[i].equals("$$")) {
 	            lastLine = i - 2;
@@ -109,6 +121,7 @@ public class CurrentForecastServlet extends HttpServlet {
 		page = addStartHead(page);
 		page = addHTMLTitle(page, "Area Forecast Discussion");
 		page = addStylesheetLink(page, request.getContextPath() + "/style.css");
+		page = addWebFont(page, "Lora");
 		page = addMobileViewport(page, 800);
 		page = addEndHead(page);
 		
@@ -119,7 +132,7 @@ public class CurrentForecastServlet extends HttpServlet {
 	private String createTitle(String page, String[] body, int i, int nextLine) {
 		String title = addStartDivWithId("", "titlecontainer");
 		title = addStartDivWithId(title, "title");
-		title = title + "<h2>" + body[i] + "</h2>" + "\n";
+		title = title + "<h2>" + "Area Forceast Discussion" + "</h2>" + "\n";
 		for (int j = i + 1; j <= nextLine; j++) {
 			title = title + "<em>" + body[j] + "</em>" + "<br/>" + "\n";
 		}
@@ -133,7 +146,7 @@ public class CurrentForecastServlet extends HttpServlet {
 		page = addStartDivWithId(page, "content");
 		
 		for (int i = firstLine; i < body.length; i++) {
-	        if (body[i].contains("ARX WATCHES/WARNINGS/ADVISORIES")) {
+	        if (body[i].contains("WATCHES/WARNINGS/ADVISORIES")) {
 	        	// The watches/warnings/advisories section has different formatting
 	            int sectionEnd = findEndOfWarnings(body, i);
 	            page = createWarnings(page, body, i, sectionEnd);
@@ -154,7 +167,7 @@ public class CurrentForecastServlet extends HttpServlet {
 	        }
 	    }
 	
-	    page = addEndDiv(addEndDiv(page));
+	    page = addEndDiv(createFooter(addEndDiv(page)));
 		return page;
 	}
 
@@ -179,18 +192,18 @@ public class CurrentForecastServlet extends HttpServlet {
 	}
 
 	private String createWarnings(String page, String[] body, int sectionStart, int sectionEnd) {
-		page += "<h3>" + body[sectionStart].substring(1, body[sectionStart].length() - 3) + "</h3>" + "\n";
+		page += "<h3>" + body[sectionStart].substring(1, body[sectionStart].length() - 3).replace("/",  ", ") + "</h3>" + "\n";
 		page += "<ul>" + "\n";
 		for (int k = sectionStart; k < sectionEnd; k++ ) {
-			if (body[k].equals("NONE.")) {
+			if (body[k].toLowerCase().startsWith("none")) {
 				page += "<li>" + "None." + "</li>" + "\n";
 				break;
 			}
 		    String[] parts;
 		    if ((parts = body[k].split("\\.\\.\\.")).length == 2) {
-		        page += "<li>" + states.get(parts[0]);
-		        if (parts[1].equals("None.")) {
-		        	page += ": " + parts[1] + "\n";
+		        page += "<li>" + (states.containsKey(parts[0]) ? states.get(parts[0]) : parts[0]);
+		        if (parts[1].toLowerCase().startsWith("none")) {
+		        	page += ": " + "None." + "\n";
 		        } else {
 		        	page += "\n" + "<ul>" + "\n";
 		            page += "<li>" + parts[1];
@@ -209,6 +222,16 @@ public class CurrentForecastServlet extends HttpServlet {
 		
 		page += "</ul>" + "\n";
 		return page;
+	}
+	
+	private String createFooter(String page) {
+		String footer = "<div id=\"footercontainer\">\n"
+				+ "<div id=\"footer\">\n"
+				+ "<p>the weather: it's real bad, like you are posting</p>\n"
+				+ "</div>\n"
+				+ "</div>\n";
+		
+		return page + footer;
 	}
 
 	private String endPage(String page) {
@@ -238,11 +261,16 @@ public class CurrentForecastServlet extends HttpServlet {
 	}
 	
 	private String addMobileViewport(String input, int width) {
-		return input + "<meta name=\"viewport\" content=\"width=" + width + "\">\n";
+		return input + "<meta name=\"viewport\" content=\"width=" + width + ", initial-scale=2.0\">\n";
+		//return input + "<meta name=\"viewport\" content=\"width=" + width + "\">\n";
 	}
 	
 	private String addStylesheetLink(String input, String styleURL) {
 		return input + "<link rel=\"stylesheet\" type=\"text/css\" href=\"" + styleURL + "\"/>\n";
+	}
+	
+	private String addWebFont(String input, String fontName) {
+		return input + "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=" + fontName + "\"/>\n";
 	}
 	
 	private String addStartBody(String input) {
@@ -304,7 +332,7 @@ public class CurrentForecastServlet extends HttpServlet {
 
 	private int findEndOfParagraph(String[] body, int i) {
 		int paragraphEnd = i;
-		while (!body[paragraphEnd].equals("")) {
+		while (paragraphEnd < body.length && !body[paragraphEnd].equals("")) {
 			paragraphEnd++;
 		}
 		return paragraphEnd;
@@ -312,7 +340,7 @@ public class CurrentForecastServlet extends HttpServlet {
 
 	private int findEndOfWarnings(String[] body, int start) {
 		int sectionEnd = start;
-		while (!body[sectionEnd].equals("&&")) {
+		while (sectionEnd < body.length && !body[sectionEnd].equals("&&")) {
 			sectionEnd++;
 		}
 		return sectionEnd;
