@@ -2,5 +2,5 @@
 applications:
 - name: ForecastDiscussions
   memory: 512M
-  host: arxdiscussion
+  host: forecastdiscussions
   domain: mybluemix.net
