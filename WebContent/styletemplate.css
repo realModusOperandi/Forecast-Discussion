@@ -84,20 +84,6 @@ p {
 	font-size: 0.9em;
 }
 
-@media screen and (max-device-width: 799px) {
-	#title h2 {
-		font-size: 2.5em;
-	}
-	
-	h3 {
-		font-size: 1.7em;
-	}
-	
-	p, em {
-		font-size: 1.1em;
-	}
-}
-
 #container {
 	order: 2;
 	width: 100%;
@@ -132,7 +118,6 @@ p {
 	max-width: 800;
 	min-width: 300;
 	color: white;
-	height: 50px;
 	
 	display: flex;
 	align-items: center;
@@ -144,4 +129,18 @@ p {
 
 #footer p {
 	
+}
+
+@media screen and (max-device-width: 799px) {
+	#title h2 {
+		font-size: 2.5em;
+	}
+	
+	h3 {
+		font-size: 1.7em;
+	}
+	
+	p, em, li {
+		font-size: 1.1em;
+	}
 }

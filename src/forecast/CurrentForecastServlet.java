@@ -132,7 +132,7 @@ public class CurrentForecastServlet extends HttpServlet {
 	private String createTitle(String page, String[] body, int i, int nextLine) {
 		String title = addStartDivWithId("", "titlecontainer");
 		title = addStartDivWithId(title, "title");
-		title = title + "<h2>" + "Area Forceast Discussion" + "</h2>" + "\n";
+		title = title + "<h2>" + "Area Forecast Discussion" + "</h2>" + "\n";
 		for (int j = i + 1; j <= nextLine; j++) {
 			title = title + "<em>" + body[j] + "</em>" + "<br/>" + "\n";
 		}
@@ -227,7 +227,7 @@ public class CurrentForecastServlet extends HttpServlet {
 	private String createFooter(String page) {
 		String footer = "<div id=\"footercontainer\">\n"
 				+ "<div id=\"footer\">\n"
-				+ "<p>the weather: it's real bad, like you are posting</p>\n"
+				+ "<p>hey</p>\n"
 				+ "</div>\n"
 				+ "</div>\n";
 		
