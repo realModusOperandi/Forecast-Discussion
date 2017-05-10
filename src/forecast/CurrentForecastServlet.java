@@ -166,8 +166,7 @@ public class CurrentForecastServlet extends HttpServlet {
 	        	i = paragraphEnd;
 	        }
 	    }
-	
-	    page = addEndDiv(createFooter(addEndDiv(page)));
+		page = createFooter(addEndDiv(addEndDiv(page)));
 		return page;
 	}
 

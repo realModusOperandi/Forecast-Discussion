@@ -7,7 +7,7 @@ body {
 	width: 100%;
 	
 	display: flex;
-	flex-flow: row wrap;
+	flex-flow: column;
 }
 
 #titlecontainer {
@@ -53,7 +53,6 @@ body {
 	max-width: 80%;
 	margin: auto;
 	font-family: Baskerville, "Lora", Georgia, serif;
-	
 }
 
 #title h2 {
@@ -86,6 +85,7 @@ p {
 
 #container {
 	order: 2;
+	flex: 1;
 	width: 100%;
 	background-color: rgb(248, 241, 227);
 	
@@ -100,7 +100,9 @@ p {
 	margin-bottom: 2em;
 
 	color: rgb(85, 53, 41);
-	font-family: Baskerville, "Lora", Georgia, serif;	
+	font-family: Baskerville, "Lora", Georgia, serif;
+	
+	box-sizing: content-box;	
 }
 
 
