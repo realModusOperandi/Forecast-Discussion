@@ -226,7 +226,7 @@ public class CurrentForecastServlet extends HttpServlet {
 	private String createFooter(String page) {
 		String footer = "<div id=\"footercontainer\">\n"
 				+ "<div id=\"footer\">\n"
-				+ "<p>whoa</p>\n"
+				+ "<p>oh hey</p>\n"
 				+ "</div>\n"
 				+ "</div>\n";
 		
