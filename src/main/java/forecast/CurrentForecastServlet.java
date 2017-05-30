@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.MarkupUtil;
+import util.ProductUtil;
+
 /**
  * Servlet implementation class CurrentForecastServlet
  */
@@ -98,12 +101,12 @@ public class CurrentForecastServlet extends HttpServlet {
 	    String page = beginPage(request);
 	
 	    // "Area Forecast Discussion" and following lines of header
-		int firstLine = findEndOfTitle(body, 0);
+		int firstLine = ProductUtil.findEndOfTitle(body, 0);
 		page = createTitle(page, body, 0, firstLine);
 		
 	    page = createContent(page, body, firstLine);
 	    
-	    page = endPage(page);
+	    page = MarkupUtil.endPage(page);
 		return page;
 	}
 
@@ -116,57 +119,57 @@ public class CurrentForecastServlet extends HttpServlet {
 	}
 
 	private String beginPage(HttpServletRequest request) {
-		String page = startHTML("");
+		String page = MarkupUtil.startHTML("");
 		
-		page = addStartHead(page);
-		page = addHTMLTitle(page, "Area Forecast Discussion");
-		page = addStylesheetLink(page, request.getContextPath() + "/style.css");
-		page = addWebFont(page, "Lora");
-		page = addMobileViewport(page, "device-width");
-		page = addEndHead(page);
+		page = MarkupUtil.addStartHead(page);
+		page = MarkupUtil.addHTMLTitle(page, "Area Forecast Discussion");
+		page = MarkupUtil.addStylesheetLink(page, request.getContextPath() + "/style.css");
+		page = MarkupUtil.addWebFont(page, "Lora");
+		page = MarkupUtil.addMobileViewport(page, "device-width");
+		page = MarkupUtil.addEndHead(page);
 		
-		page = addStartBody(page);
+		page = MarkupUtil.addStartBody(page);
 		return page;
 	}
 
 	private String createTitle(String page, String[] body, int i, int nextLine) {
-		String title = addStartDivWithId("", "titlecontainer");
-		title = addStartDivWithId(title, "title");
+		String title = MarkupUtil.addStartDivWithId("", "titlecontainer");
+		title = MarkupUtil.addStartDivWithId(title, "title");
 		title = title + "<h2>" + "Area Forecast Discussion" + "</h2>" + "\n";
 		for (int j = i + 1; j <= nextLine; j++) {
 			title = title + "<em>" + body[j] + "</em>" + "<br/>" + "\n";
 		}
-		title = addEndDiv(title);
-		title = addEndDiv(title);
+		title = MarkupUtil.addEndDiv(title);
+		title = MarkupUtil.addEndDiv(title);
 		return page + title;
 	}
 
 	private String createContent(String page, String[] body, int firstLine) {
-		page = addStartDivWithId(page, "container");
-		page = addStartDivWithId(page, "content");
+		page = MarkupUtil.addStartDivWithId(page, "container");
+		page = MarkupUtil.addStartDivWithId(page, "content");
 		
 		for (int i = firstLine; i < body.length; i++) {
 	        if (body[i].contains("WATCHES/WARNINGS/ADVISORIES")) {
 	        	// The watches/warnings/advisories section has different formatting
-	            int sectionEnd = findEndOfWarnings(body, i);
+	            int sectionEnd = ProductUtil.findEndOfWarnings(body, i);
 	            page = createWarnings(page, body, i, sectionEnd);
 	            i = sectionEnd;
 	        } else if (body[i].startsWith(".")) {
 	            // ".SHORT TERM", ".LONG TERM", etc and following lines
-	        	int sectionEnd = findEndOfHeading(body, i);
+	        	int sectionEnd = ProductUtil.findEndOfHeading(body, i);
 	            page = createHeading(page, body, i, sectionEnd);
 	            i = sectionEnd;
 	        } else if (body[i].equals("&&") || body[i].equals("$$") || body[i].equals("")) {
 	            // Remove these marks
 	            continue;
 	        } else if (body[i-1].equals("")) {
-	        	int paragraphEnd = findEndOfParagraph(body, i);
+	        	int paragraphEnd = ProductUtil.findEndOfParagraph(body, i);
 	        	
 	        	page = createParagraph(page, body, i, paragraphEnd);
 	        	i = paragraphEnd;
 	        }
 	    }
-		page = createFooter(addEndDiv(addEndDiv(page)));
+		page = createFooter(MarkupUtil.addEndDiv(MarkupUtil.addEndDiv(page)));
 		return page;
 	}
 
@@ -233,84 +236,6 @@ public class CurrentForecastServlet extends HttpServlet {
 		return page + footer;
 	}
 
-	private String endPage(String page) {
-        page = addEndBody(page);
-        page = addEndHTML(page);
-        return page;
-	}
-
-	private String startHTML(String input) {
-		return input + "<html>\n";
-	}
-	
-	private String addEndHTML(String page) {
-		return page + "</html>\n";
-	}
-
-	private String addStartHead(String input) {
-		return input + "<head>\n";
-	}
-	
-	private String addEndHead(String input) {
-		return input + "</head>\n";
-	}
-
-	private String addHTMLTitle(String input, String title) {
-		return input + "<title>" + title + "</title>\n";
-	}
-	
-	private String addMobileViewport(String input, int width) {
-		return input + "<meta name=\"viewport\" content=\"width=" + width + ", initial-scale=1.0\">\n";
-		//return input + "<meta name=\"viewport\" content=\"width=" + width + "\">\n";
-	}
-	
-	private String addMobileViewport(String input, String widthValue) {
-		return input + "<meta name=\"viewport\" content=\"width=" + widthValue + ", initial-scale=1.0\">\n";
-	}
-	
-	private String addStylesheetLink(String input, String styleURL) {
-		return input + "<link rel=\"stylesheet\" type=\"text/css\" href=\"" + styleURL + "\"/>\n";
-	}
-	
-	private String addWebFont(String input, String fontName) {
-		return input + "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=" + fontName + "\"/>\n";
-	}
-	
-	private String addStartBody(String input) {
-		return input + "<body>\n";
-	}
-	
-	private String addEndBody(String page) {
-		return page + "</body>\n";
-	}
-
-	private String addStartDivWithId(String input, String id) {
-		return addStartDiv(input, id, null);
-	}
-	
-	private String addStartDiv(String input, String id, String className) {
-		String div = "<div";
-		if (id != null) {
-			div = div + " id=\"" + id +"\"";
-		}
-		
-		if (className != null) {
-			div = div + " class=\"" + className + "\"";
-		}
-		
-		div = div + ">\n";
-		return input + div;
-	}
-	
-	private String addEndDiv(String input) {
-		return input + "</div>\n";
-	}
-	
-	protected boolean supportsFixedBackground(HttpServletRequest request) {
-		String agent = request.getHeader("User-Agent");
-		return !agent.contains("iPhone") || agent.contains("iPad") || agent.contains("iPod");
-	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -318,35 +243,4 @@ public class CurrentForecastServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
-	protected String contextPath(HttpServletRequest request) {
-		return request.getContextPath();
-	}
-
-	private int findEndOfTitle(String[] body, int startOfTitle) {
-		int nextLine = findEndOfHeading(body, startOfTitle);
-		return nextLine;
-	}
-
-	private int findEndOfHeading(String[] body, int i) {
-		int sectionEnd = findEndOfParagraph(body, i);
-		return sectionEnd;
-	}
-
-	private int findEndOfParagraph(String[] body, int i) {
-		int paragraphEnd = i;
-		while (paragraphEnd < body.length && !body[paragraphEnd].equals("")) {
-			paragraphEnd++;
-		}
-		return paragraphEnd;
-	}
-
-	private int findEndOfWarnings(String[] body, int start) {
-		int sectionEnd = start;
-		while (sectionEnd < body.length && !body[sectionEnd].equals("&&")) {
-			sectionEnd++;
-		}
-		return sectionEnd;
-	}
-
 }
