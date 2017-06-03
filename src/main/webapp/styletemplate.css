@@ -5,7 +5,7 @@ html {
 }
 
 body {
-	background-color: rgb(50, 50, 50);
+	background-color: white;
 	margin: 0;
 	width: 100%;
 	min-height: 100%;
@@ -39,6 +39,8 @@ body {
 	flex: 3;
 	height: 100%;
 	
+	font-weight: bold;
+	
 }
 
 #navtitle {
@@ -53,11 +55,15 @@ body {
 	align-items: center;
 	justify-content: center;
 	height: 100%;
+	
+	font-variant: small-caps;
 }
 
 .navsmall div {
-	width: 150px;
+	width: 110px;
 	height: 100%;
+	
+	padding: 0 10px;
 
 	display: flex;
 	align-items: center;
@@ -74,7 +80,6 @@ body {
 
 .navsmall div:hover {
 	background-color: rgb(30, 30, 30);
-	/*color: rgb(50, 50, 50);*/
 }
 #titlecontainer {
 	order: 1;
@@ -85,32 +90,15 @@ body {
 	justify-content: center;
 	overflow: hidden;
 	width: 100%;
+	
+	background-size: auto;
+	background-image: url(%%BACKGROUND_IMAGE%%);
 }
 
 @media screen and (max-height: 499px) {
 	#titlecontainer {
 		height: 100%;
 	}
-}
-
-#title:before {
-	content: "";
-	position: fixed;
-	left: 0;
-	right: 0;
-	z-index: -1;
-	top: 0;
-	
-	background-color: rgba(223, 217, 202, 1);
-	background-attachment: %%POSITION%%;
-	background-size: cover;
-	background-image: url(%%BACKGROUND_IMAGE%%);
-	
-	width: 2560px;
-	height: 600px;
-	
-	filter:brightness(70%);
-
 }
 
 #title {
