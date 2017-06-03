@@ -99,6 +99,8 @@ public class CurrentForecastServlet extends HttpServlet {
 
 	private String createPage(HttpServletRequest request, String[] body) {
 	    String page = beginPage(request);
+	    
+	    page = createNav(page);
 	
 	    // "Area Forecast Discussion" and following lines of header
 		int firstLine = ProductUtil.findEndOfTitle(body, 0);
@@ -142,6 +144,24 @@ public class CurrentForecastServlet extends HttpServlet {
 		title = MarkupUtil.addEndDiv(title);
 		title = MarkupUtil.addEndDiv(title);
 		return page + title;
+	}
+	
+	private String createNav(String page) {
+		page = MarkupUtil.addStartDivWithId(page, "navcontainer");
+		page = MarkupUtil.addStartDivWithId(page, "nav");
+		
+		page = MarkupUtil.addStartDiv(page, "navtitle", "navlarge");
+		page = page + "Forecast Discussions";
+		page = MarkupUtil.addEndDiv(page);
+		
+		page = MarkupUtil.addStartDivWithClass(page, "navsmall");
+		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=ARX", MarkupUtil.addStartDiv("") + "La Crosse, WI" + MarkupUtil.addEndDiv(""));
+		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=DLH", MarkupUtil.addStartDiv("") + "Duluth, MN" + MarkupUtil.addEndDiv(""));
+		page = MarkupUtil.addEndDiv(page);
+		
+		page = MarkupUtil.addEndDiv(MarkupUtil.addEndDiv(page));
+		
+		return page;
 	}
 
 	private String createContent(String page, String[] body, int firstLine) {
