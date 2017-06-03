@@ -53,9 +53,17 @@ public class MarkupUtil {
 	public static String addEndBody(String page) {
 		return page + "</body>\n";
 	}
+	
+	public static String addStartDiv(String input) {
+		return addStartDiv(input, null, null);
+	}
 
 	public static String addStartDivWithId(String input, String id) {
 		return addStartDiv(input, id, null);
+	}
+	
+	public static String addStartDivWithClass(String input, String className) {
+		return addStartDiv(input, null, className);
 	}
 	
 	public static String addStartDiv(String input, String id, String className) {
@@ -75,4 +83,12 @@ public class MarkupUtil {
 	public static String addEndDiv(String input) {
 		return input + "</div>\n";
 	}
+	
+	public static String addURL(String input, String url, String text) {
+		return input + "<a href=\"" + url + "\">" + text + "</a>";
+	}
+
+
+
+	
 }

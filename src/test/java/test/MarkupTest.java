@@ -98,9 +98,30 @@ public class MarkupTest {
 	}
 	
 	@Test
+	public void testStartDivWithClass() {
+		String valid = TEST_STARTED_BODY + "<div class=\"content\">\n";
+		String result = MarkupUtil.addStartDivWithClass(TEST_STARTED_BODY, "content");
+		assertEquals(getErrorMessage(valid, result), valid, result);
+	}
+	
+	@Test
 	public void testStartDiv() {
 		String valid = TEST_STARTED_BODY + "<div id=\"tableOfContents\" class=\"largeList\">\n";
 		String result = MarkupUtil.addStartDiv(TEST_STARTED_BODY, "tableOfContents", "largeList");
+		assertEquals(getErrorMessage(valid, result), valid, result);
+	}
+	
+	@Test
+	public void testStartDivNoParams() {
+		String valid = TEST_STARTED_BODY + "<div>\n";
+		String result = MarkupUtil.addStartDiv(TEST_STARTED_BODY);
+		assertEquals(getErrorMessage(valid, result), valid, result);
+	}
+	
+	@Test
+	public void testAddURL() {
+		String valid = TEST_STARTED_BODY + "<a href=\"https://forecastdiscussions.mybluemix.net\">Forecast Discussions</a>";
+		String result = MarkupUtil.addURL(TEST_STARTED_BODY, "https://forecastdiscussions.mybluemix.net", "Forecast Discussions");
 		assertEquals(getErrorMessage(valid, result), valid, result);
 	}
 	
