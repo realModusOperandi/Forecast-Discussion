@@ -168,8 +168,8 @@ public class CurrentForecastServlet extends HttpServlet {
 		page = MarkupUtil.addEndDiv(page);
 		
 		page = MarkupUtil.addStartDivWithClass(page, "navsmall");
-		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=ARX", MarkupUtil.addStartDiv("") + "La Crosse, WI" + MarkupUtil.addEndDiv(""));
-		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=DLH", MarkupUtil.addStartDiv("") + "Duluth, MN" + MarkupUtil.addEndDiv(""));
+		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=ARX", MarkupUtil.addStartDiv("") + "la crosse wi" + MarkupUtil.addEndDiv(""));
+		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=DLH", MarkupUtil.addStartDiv("") + "duluth mn" + MarkupUtil.addEndDiv(""));
 		page = MarkupUtil.addEndDiv(page);
 		
 		page = MarkupUtil.addEndDiv(MarkupUtil.addEndDiv(page));

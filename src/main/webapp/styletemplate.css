@@ -31,6 +31,7 @@ body {
 	flex-flow: row;
 	
 	margin: 0 auto;
+	font-family: Baskerville, "Lora", Georgia, serif;
 }
 
 .navlarge {
@@ -44,7 +45,6 @@ body {
 }
 
 #navtitle {
-	font-family: Baskerville, "Lora", Georgia, serif;
 	font-size: 1.5em;
 	color: white;
 }
@@ -57,10 +57,11 @@ body {
 	height: 100%;
 	
 	font-variant: small-caps;
+	font-size: 1.4em;
 }
 
 .navsmall div {
-	width: 110px;
+	width: 120px;
 	height: 100%;
 	
 	padding: 0 10px;
