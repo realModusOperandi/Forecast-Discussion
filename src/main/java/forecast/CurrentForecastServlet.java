@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +26,18 @@ import util.ProductUtil;
 @WebServlet("")
 public class CurrentForecastServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String[] footers = {
+			"oh hey",
+			"hey",
+			"what's up",
+			"hope the weather's real nice bb",
+			"don't get rained on",
+			"nice",
+			"storm's comin",
+			"it'll blow over eventually",
+			"better lay low",
+	};
 
     public static Map<String, String> states = new HashMap<>();
     static {
@@ -247,9 +260,10 @@ public class CurrentForecastServlet extends HttpServlet {
 	}
 	
 	private String createFooter(String page) {
+		Random r = new Random();
 		String footer = "<div id=\"footercontainer\">\n"
 				+ "<div id=\"footer\">\n"
-				+ "<p>oh hey</p>\n"
+				+ "<p>" + footers[r.nextInt(footers.length)] + "</p>\n"
 				+ "</div>\n"
 				+ "</div>\n";
 		
