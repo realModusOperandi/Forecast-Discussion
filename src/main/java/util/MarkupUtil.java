@@ -84,6 +84,36 @@ public class MarkupUtil {
 		return input + "</div>\n";
 	}
 	
+	public static String addStartNav(String input) {
+		return addStartNav(input, null, null);
+	}
+
+	public static String addStartNavWithId(String input, String id) {
+		return addStartNav(input, id, null);
+	}
+	
+	public static String addStartNavWithClass(String input, String className) {
+		return addStartNav(input, null, className);
+	}
+	
+	public static String addStartNav(String input, String id, String className) {
+		String nav = "<nav";
+		if (id != null) {
+			nav = nav + " id=\"" + id +"\"";
+		}
+		
+		if (className != null) {
+			nav = nav + " class=\"" + className + "\"";
+		}
+		
+		nav = nav + ">\n";
+		return input + nav;
+	}
+	
+	public static String addEndNav(String input) {
+		return input + "</nav>\n";
+	}
+	
 	public static String addURL(String input, String url, String text) {
 		return input + "<a href=\"" + url + "\">" + text + "</a>";
 	}
