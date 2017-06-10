@@ -32,7 +32,7 @@ body {
 	flex-flow: row;
 	
 	margin: 0 auto;
-	font-family: Baskerville, "Lora", Georgia, serif;
+	font-family: Baskerville, "Cormorant Garamond", Georgia, serif;
 }
 
 .navlarge {
@@ -129,7 +129,7 @@ body {
 	filter: none(); 
 	max-width: 80%;
 	margin: auto;
-	font-family: Baskerville, "Lora", Georgia, serif;
+	font-family: Baskerville, "Cormorant Garamond", Georgia, serif;
 }
 
 #title h2 {
@@ -156,8 +156,8 @@ h3 {
 	font-weight: normal;
 }
 
-p {
-	font-size: 0.9em;
+p, em {
+	font-size: 1.1em;
 }
 
 #container {
@@ -177,7 +177,7 @@ p {
 	margin-bottom: 2em;
 
 	color: rgb(85, 53, 41);
-	font-family: Baskerville, "Lora", Georgia, serif;
+	font-family: Baskerville, "Cormorant Garamond", Georgia, serif;
 	
 	box-sizing: content-box;	
 }
@@ -202,7 +202,7 @@ p {
 	align-items: center;
 	justify-content: flex-start;
 	
-	font-family: Baskerville, "Lora", Georgia, serif;
+	font-family: Baskerville, "Cormorant Garamond", Georgia, serif;
 	font-size: 1.3em;
 }
 

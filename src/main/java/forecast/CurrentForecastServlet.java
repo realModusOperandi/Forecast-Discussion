@@ -139,7 +139,7 @@ public class CurrentForecastServlet extends HttpServlet {
 		page = MarkupUtil.addStartHead(page);
 		page = MarkupUtil.addHTMLTitle(page, "Area Forecast Discussion");
 		page = MarkupUtil.addStylesheetLink(page, request.getContextPath() + "/style.css");
-		page = MarkupUtil.addWebFont(page, "Lora");
+		page = MarkupUtil.addWebFont(page, "Cormorant+Garamond");
 		page = MarkupUtil.addMobileViewport(page, "device-width");
 		page = MarkupUtil.addEndHead(page);
 		
