@@ -18,6 +18,7 @@ body {
 	width: 100%;
 	background-color: rgb(50, 50, 50);
 	height: 50px;
+	position: fixed;
 }
 
 #nav {
@@ -47,6 +48,13 @@ body {
 #navtitle {
 	font-size: 1.5em;
 	color: white;
+	display: inherit;
+}
+
+#navtitle-abbrev {
+	font-size: 1.5em;
+	color: white;
+	display: none;
 }
 
 .navsmall {
@@ -58,6 +66,20 @@ body {
 	
 	font-variant: small-caps;
 	font-size: 1.4em;
+}
+
+@media screen and (max-width:499pt) {
+	#navtitle {
+		display: none;
+	}
+	
+	#navtitle-abbrev {
+		display: inherit;
+	}
+	
+	.navsmall {
+		justify-content: flex-end;
+	}
 }
 
 .navsmall div {
