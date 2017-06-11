@@ -164,7 +164,7 @@ public class CurrentForecastServlet extends HttpServlet {
 		page = MarkupUtil.addStartDivWithId(page, "nav");
 		
 		page = MarkupUtil.addStartDiv(page, "navtitle", "navlarge");
-		page = page + "Forecast Discussions";
+		page = page + "<span>Forecast Discussions</span>";
 		page = MarkupUtil.addEndDiv(page);
 		
 		page = MarkupUtil.addStartDiv(page, "navtitle-abbrev", "navlarge");

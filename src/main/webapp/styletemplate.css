@@ -2,6 +2,7 @@
 
 html {
 	height: 100%;
+	min-width: 320px;
 }
 
 body {
@@ -23,7 +24,6 @@ body {
 
 #nav {
 	max-width: 800px;
-	min-width: 300px;
 	width: 85%;
 	
 	height: 100%;
@@ -43,17 +43,16 @@ body {
 	
 	font-weight: bold;
 	
+	font-size: 1.5em;
+	color: white;
+	
 }
 
 #navtitle {
-	font-size: 1.5em;
-	color: white;
 	display: inherit;
 }
 
 #navtitle-abbrev {
-	font-size: 1.5em;
-	color: white;
 	display: none;
 }
 
@@ -63,30 +62,19 @@ body {
 	align-items: center;
 	justify-content: center;
 	height: 100%;
+	margin-left: 20px;
 	
 	font-variant: small-caps;
 	font-size: 1.4em;
 }
 
-@media screen and (max-width:499pt) {
-	#navtitle {
-		display: none;
-	}
-	
-	#navtitle-abbrev {
-		display: inherit;
-	}
-	
-	.navsmall {
-		justify-content: flex-end;
-	}
-}
 
 .navsmall div {
 	width: 120px;
 	height: 100%;
 	
-	padding: 0 10px;
+	padding: 0px 10px;
+	margin: 0px;
 
 	display: flex;
 	align-items: center;
@@ -104,6 +92,57 @@ body {
 .navsmall div:hover {
 	background-color: rgb(30, 30, 30);
 }
+
+@media screen and (max-width: 649px) and (min-width: 350px) {
+	#navtitle {
+		display: none;
+	}
+	
+	#navtitle-abbrev {
+		display: inherit;
+	}
+}
+
+@media screen and (max-width: 449px) {
+	#navcontainer {
+		height: 70px;
+	}
+	
+	#nav {
+		flex-flow: column;
+		justify-content: center;
+	}
+	
+	.navlarge {
+		flex: 1;
+		justify-content: center;
+		padding-top: 5px;
+	}
+	
+	.navlarge span {
+		text-align: right;
+	}
+	
+	#navtitle {
+		display: inherit;
+	}
+	
+	#navtitle-abbrev {
+		display: none;
+	}
+	
+	.navsmall {
+		padding-bottom: 5px;
+		margin-left: 0px;
+	}
+	
+	.navsmall div{
+		padding-bottom: 5px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
 #titlecontainer {
 	order: 1;
 	
@@ -170,9 +209,8 @@ p, em {
 
 #content {
 	width: 85%;
-	max-width: 800;
-	min-width: 300;
-	padding: 5 30;
+	max-width: 800px;
+	padding: 5 0;
 	margin: auto;
 	margin-bottom: 2em;
 
@@ -194,8 +232,7 @@ p, em {
 
 #footer {
 	width: 85%;
-	max-width: 800;
-	min-width: 300;
+	max-width: 800px;
 	color: white;
 	
 	display: flex;
