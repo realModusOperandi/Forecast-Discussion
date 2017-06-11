@@ -74,7 +74,7 @@ public class CurrentForecastServlet extends HttpServlet {
         if (debug) {
         	sendResponse(response, Arrays.stream(body).reduce("", (a, b) -> a + b + "\n"));
         }
-        String page = createPage(request, body);
+        String page = createPage(request, body, office);
         sendResponse(response, page);
 	}
 
@@ -110,10 +110,10 @@ public class CurrentForecastServlet extends HttpServlet {
 		return body;
 	}
 
-	private String createPage(HttpServletRequest request, String[] body) {
+	private String createPage(HttpServletRequest request, String[] body, String office) {
 	    String page = beginPage(request);
 	    
-	    page = createNav(page);
+	    page = createNav(page, office);
 	
 	    // "Area Forecast Discussion" and following lines of header
 		int firstLine = ProductUtil.findEndOfTitle(body, 0);
@@ -159,7 +159,7 @@ public class CurrentForecastServlet extends HttpServlet {
 		return page + title;
 	}
 	
-	private String createNav(String page) {
+	private String createNav(String page, String office) {
 		page = MarkupUtil.addStartDivWithId(page, "navcontainer");
 		page = MarkupUtil.addStartDivWithId(page, "nav");
 		
@@ -172,8 +172,8 @@ public class CurrentForecastServlet extends HttpServlet {
 		page = MarkupUtil.addEndDiv(page);
 		
 		page = MarkupUtil.addStartDivWithClass(page, "navsmall");
-		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=ARX", MarkupUtil.addStartDiv("") + "la crosse wi" + MarkupUtil.addEndDiv(""));
-		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=DLH", MarkupUtil.addStartDiv("") + "duluth mn" + MarkupUtil.addEndDiv(""));
+		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=ARX", MarkupUtil.addStartDiv("", null, (office.equals("ARX") ? "current-page" : null)) + "la crosse wi" + MarkupUtil.addEndDiv(""));
+		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=DLH", MarkupUtil.addStartDiv("", null, (office.equals("DLH") ? "current-page" : null)) + "duluth mn" + MarkupUtil.addEndDiv(""));
 		page = MarkupUtil.addEndDiv(page);
 		
 		page = MarkupUtil.addEndDiv(MarkupUtil.addEndDiv(page));
