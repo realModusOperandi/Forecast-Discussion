@@ -32,7 +32,7 @@ body {
 	flex-flow: row;
 	
 	margin: 0 auto;
-	font-family: Baskerville, "Cormorant Garamond", Georgia, serif;
+	font-family: Baskerville, "Sorts Mill Goudy", Georgia, serif;
 }
 
 .navlarge {
@@ -170,7 +170,7 @@ body {
 	filter: none(); 
 	max-width: 80%;
 	margin: auto;
-	font-family: Baskerville, "Cormorant Garamond", Georgia, serif;
+	font-family: Baskerville, "Sorts Mill Goudy", Georgia, serif;
 }
 
 #title h2 {
@@ -217,7 +217,7 @@ p, em {
 	margin-bottom: 2em;
 
 	color: rgb(85, 53, 41);
-	font-family: Baskerville, "Cormorant Garamond", Georgia, serif;
+	font-family: Baskerville, "Sorts Mill Goudy", Georgia, serif;
 	
 	box-sizing: content-box;	
 }
@@ -241,7 +241,7 @@ p, em {
 	align-items: center;
 	justify-content: flex-start;
 	
-	font-family: Baskerville, "Cormorant Garamond", Georgia, serif;
+	font-family: Baskerville, "Sorts Mill Goudy", Georgia, serif;
 	font-size: 1.3em;
 }
 
