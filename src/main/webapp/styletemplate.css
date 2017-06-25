@@ -70,7 +70,7 @@ body {
 
 
 .navsmall div {
-	height: inherit;
+	height: 100%;
 	
 	padding: 0px 20px;
 	margin: 0px;
@@ -82,6 +82,7 @@ body {
 	white-space: nowrap;
 	
 	color: #aaa;
+	
 }
 
 .navsmall a {
@@ -92,10 +93,14 @@ body {
 
 .navsmall div:hover {
 	color: white;
+	background-color: rgb(30, 30, 30);
 }
 
 .navsmall .current-page {
 	color: white;
+	background-color: rgb(30, 30, 30);
+    box-shadow: inset 0 -2px 0 white;
+	
 }
 
 @media screen and (max-width: 649px) and (min-width: 450px) {
@@ -134,11 +139,13 @@ body {
 	}
 	
 	.navsmall {
+		position: relative;
 		padding-bottom: 5px;
 		margin-left: 0px;
 	}
 	
 	.navsmall div {
+		height: 50%;
 		padding-bottom: 5px;
 		padding-left: 15px;
 		padding-right: 15px;
