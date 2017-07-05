@@ -174,8 +174,9 @@ public class CurrentForecastServlet extends HttpServlet {
 		page = MarkupUtil.addEndDiv(page);
 		
 		page = MarkupUtil.addStartDivWithClass(page, "navsmall");
-		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=ARX", MarkupUtil.addStartDiv("", null, (office.equals("ARX") ? "current-page" : null)) + "la crosse wi" + MarkupUtil.addEndDiv(""));
-		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=DLH", MarkupUtil.addStartDiv("", null, (office.equals("DLH") ? "current-page" : null)) + "duluth mn" + MarkupUtil.addEndDiv(""));
+		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=ARX", MarkupUtil.addStartDiv("", null, (office.equals("ARX") ? "current-page" : null)) + "la crosse" + MarkupUtil.addEndDiv(""));
+		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=DLH", MarkupUtil.addStartDiv("", null, (office.equals("DLH") ? "current-page" : null)) + "duluth" + MarkupUtil.addEndDiv(""));
+		page = MarkupUtil.addURL(page, getServletContext().getContextPath() + "?office=PSR", MarkupUtil.addStartDiv("", null, (office.equals("PSR") ? "current-page" : null)) + "phoenix" + MarkupUtil.addEndDiv(""));
 		page = MarkupUtil.addEndDiv(page);
 		
 		page = MarkupUtil.addEndDiv(MarkupUtil.addEndDiv(page));
