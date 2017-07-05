@@ -224,11 +224,33 @@ public class CurrentForecastServlet extends HttpServlet {
 	}
 
 	private String createHeading(String page, String[] body, int sectionStart, int sectionEnd) {
-		page += "<h3>" + body[sectionStart].substring(1).replace("...", ": ").replace("(", "").replace(")", "") + "</h3>" + "\n";
-		
-		for (int j = sectionStart + 1; j < sectionEnd; j++) {
-			page += "<em>" + body[j] + "</em>" + "\n";
+		String heading = "";
+		if (body[sectionStart].endsWith("...")) {
+			heading = body[sectionStart].substring(1, body[sectionStart].indexOf("..."));
+		} else {
+			heading = body[sectionStart].substring(1).replace("...", ": ").replace("(", "").replace(")", "");
 		}
+		page += "<h3>" + heading + "</h3>" + "\n";
+		
+		// If there's only one line right after the heading 
+		// and it doesn't end with a period, it's probably a subheader
+		if (sectionEnd-sectionStart == 2) {
+			if (body[sectionStart + 1].length() > 0 && ".,;:?!".indexOf(body[sectionStart + 1].charAt(body[sectionStart + 1].length() - 1)) == -1) {
+				
+				page += "<em>" + body[sectionStart + 1] + "</em>" + "\n";
+			} else {
+				page += "<p>" + body[sectionStart + 1] + "</p>" + "\n";
+			}
+			
+		} else {
+			page += "<p>";
+			for (int j = sectionStart + 1; j < sectionEnd; j++) {
+				page += body[j];
+			}
+			page += "</p>\n";
+		}
+		
+		
 		return page;
 	}
 
