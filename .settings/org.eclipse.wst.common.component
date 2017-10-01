@@ -2,8 +2,8 @@
     <wb-module deploy-name="Forecast Discussions">
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_generated"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_generated"/>
         <property name="java-output-path" value="/Forecast Discussions/build/bin"/>
         <property name="context-root" value="forecast/current"/>
     </wb-module>
