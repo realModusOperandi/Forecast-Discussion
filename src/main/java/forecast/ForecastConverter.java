@@ -12,7 +12,8 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,7 +21,7 @@ import util.MarkupUtil;
 import util.ProductUtil;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ForecastConverter {
 	public static final String[] footers = {
 			"oh hey",
@@ -42,25 +43,43 @@ public class ForecastConverter {
     }
 	
 	public void handleRequest(HttpServletRequest request, HttpServletResponse response) {
+		String page = getForecast(request);
+		sendResponse(response, page);
+	}
+	
+	public String getForecast() {
+		Map<String, String> parameters = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String office = "ARX";
+		if (parameters.containsKey("office")) {
+			office = parameters.get("office");
+		}
+		
+		return createForecast(office);
+	}
+
+	private String getForecast(HttpServletRequest request) {
 		Map<String, String[]> parameters = request.getParameterMap();
 		String office = "ARX";
 		if (parameters.containsKey("office")) {
 			office = parameters.get("office")[0];
 		}
 
-		boolean debug = false;
-		if (parameters.containsKey("debug")) {
-			debug = Boolean.valueOf(parameters.get("debug")[0]);
-		}
+		return createForecast(request, office);
+	}
+	
+	private String createForecast(String office) {
+		return createForecast(null, office);
+	}
+
+	private String createForecast(HttpServletRequest request, String office) {
 		String productURL = "http://forecast.weather.gov/product.php?site=" + office + "&issuedby=" + office
 				+ "&product=AFD&format=txt&version=1&glossary=0";
 		String[] contents = getProductText(productURL);
 		String[] body = trimContents(contents);
-		if (debug) {
-			sendResponse(response, Arrays.stream(body).reduce("", (a, b) -> a + b + "\n"));
+		if (request == null) {
+			return createContent("", body, ProductUtil.findEndOfTitle(body, 0));
 		}
-		String page = createPage(request, body, office);
-		sendResponse(response, page);
+		return createPage(request, body, office);
 	}
 
 	private String[] getProductText(String productURL) {
