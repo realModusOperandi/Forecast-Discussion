@@ -68,7 +68,7 @@ public class CurrentForecastServlet extends HttpServlet {
 		if (parameters.containsKey("debug")) {
 			debug = Boolean.valueOf(parameters.get("debug")[0]);
 		}
-		String productURL = "http://forecast.weather.gov/product.php?site=" + office + "&issuedby=" + office + "&product=AFD&format=txt&version=1&glossary=0";
+		String productURL = "https://forecast.weather.gov/product.php?site=" + office + "&issuedby=" + office + "&product=AFD&format=txt&version=1&glossary=0";
 		String[] contents = getProductText(productURL);
         String[] body = trimContents(contents);
         if (debug) {
