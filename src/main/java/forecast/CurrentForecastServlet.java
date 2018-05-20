@@ -142,6 +142,7 @@ public class CurrentForecastServlet extends HttpServlet {
 		page = MarkupUtil.addWebFont(page, "Sorts+Mill+Goudy");
 		page = MarkupUtil.addWebFont(page, "Crimson+Text");
 		page = MarkupUtil.addWebFont(page, "EB+Garamond");
+		page = MarkupUtil.addWebFont(page, "PT+Serif");
 		page = MarkupUtil.addMobileViewport(page, "device-width");
 		page = MarkupUtil.addEndHead(page);
 		

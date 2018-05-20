@@ -61,7 +61,7 @@ em {
 	flex-flow: row;
 	
 	margin: 0 auto;
-	font-family: Baskerville, "Sorts Mill Goudy", Georgia, serif;
+	font-family: "PT Serif", "Sorts Mill Goudy", Georgia, serif;
 }
 
 .navlarge {
@@ -199,7 +199,7 @@ em {
 	filter: none(); 
 	max-width: 80%;
 	margin: auto;
-	font-family: Baskerville, "Sorts Mill Goudy", Georgia, serif;
+	font-family: "PT Serif", "Sorts Mill Goudy", Georgia, serif;
 }
 
 #title h2 {
@@ -232,7 +232,8 @@ em {
 	margin-bottom: 2em;
 
 	color: rgb(85, 53, 41);
-	font-family: Baskerville, "Sorts Mill Goudy", Georgia, serif;
+	font-family: "PT Serif", "Sorts Mill Goudy", Georgia, serif;
+	font-size: 0.8em;
 	
 	box-sizing: content-box;	
 }
@@ -257,7 +258,7 @@ em {
 	align-items: center;
 	justify-content: flex-start;
 	
-	font-family: Baskerville, "Sorts Mill Goudy", Georgia, serif;
+	font-family: "PT Serif", "Sorts Mill Goudy", Georgia, serif;
 	font-size: 1.3em;
 }
 
