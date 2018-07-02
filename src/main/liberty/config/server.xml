@@ -1,0 +1,12 @@
+<server>
+    <featureManager>
+        <feature>servlet-4.0</feature>
+    </featureManager>
+
+    <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="${httpPort}" httpsPort="${httpsPort}" />
+
+    <keyStore id="defaultKeyStore" password="secret2" />
+    <quickStartSecurity userName="admin" userPassword="admin"/>
+
+</server>
+
