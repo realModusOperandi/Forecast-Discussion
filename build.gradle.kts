@@ -17,23 +17,27 @@ dependencies {
     providedCompile("javax", "javaee-api", "8.0")
 
     testImplementation("junit", "junit", "4.12")
+    libertyRuntime("io.openliberty", "openliberty-runtime", "[18.0.0.2,)")
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 val httpPort by extra { 8080 }
 val httpsPort by extra { 9443 }
+val applicationName by extra { (tasks["war"] as War).archiveName }
 
 liberty {
     server = ServerExtension()
     server.name = "forecastServer"
-    server.dropins = listOf(tasks.getByName("war"))
-    server.bootstrapProperties = mapOf("httpPort" to httpPort, "httpsPort" to httpsPort)
+    server.apps = listOf(tasks["war"])
+    server.bootstrapProperties = mapOf("httpPort" to httpPort, "httpsPort" to httpsPort, "applicationName" to applicationName)
     server.configDirectory = file("src/main/liberty/config")
-
-    server.features = FeatureExtension()
-    server.features.acceptLicense = true
 }
 
-tasks.getByName("clean").dependsOn("libertyStop")
+war {
+    val war = tasks["war"] as War
+    war.archiveName = "${war.baseName}.${war.extension}"
+}
+
+tasks["clean"].dependsOn("libertyStop")
 
