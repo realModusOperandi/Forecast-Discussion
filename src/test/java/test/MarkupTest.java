@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import util.MarkupUtil;
 
+
 public class MarkupTest {
 
 	private static final String SOME_TEST_STRING = "hi";
@@ -94,14 +95,14 @@ public class MarkupTest {
 	@Test
 	public void testStartDivWithId() {
 		String valid = TEST_STARTED_BODY + "<div id=\"content\">\n";
-		String result = MarkupUtil.addStartDivWithId(TEST_STARTED_BODY, "content");
+		String result = MarkupUtil.addStartDiv(TEST_STARTED_BODY, "content", null);
 		assertEquals(getErrorMessage(valid, result), valid, result);
 	}
 	
 	@Test
 	public void testStartDivWithClass() {
 		String valid = TEST_STARTED_BODY + "<div class=\"content\">\n";
-		String result = MarkupUtil.addStartDivWithClass(TEST_STARTED_BODY, "content");
+		String result = MarkupUtil.addStartDiv(TEST_STARTED_BODY, null, "content");
 		assertEquals(getErrorMessage(valid, result), valid, result);
 	}
 	
@@ -115,7 +116,7 @@ public class MarkupTest {
 	@Test
 	public void testStartDivNoParams() {
 		String valid = TEST_STARTED_BODY + "<div>\n";
-		String result = MarkupUtil.addStartDiv(TEST_STARTED_BODY);
+		String result = MarkupUtil.addStartDiv(TEST_STARTED_BODY, null, null);
 		assertEquals(getErrorMessage(valid, result), valid, result);
 	}
 	
@@ -136,14 +137,14 @@ public class MarkupTest {
 	@Test
 	public void testStartNavWithId() {
 		String valid = TEST_STARTED_BODY + "<nav id=\"content\">\n";
-		String result = MarkupUtil.addStartNavWithId(TEST_STARTED_BODY, "content");
+		String result = MarkupUtil.addStartNav(TEST_STARTED_BODY, "content", null);
 		assertEquals(getErrorMessage(valid, result), valid, result);
 	}
 	
 	@Test
 	public void testStartNavWithClass() {
 		String valid = TEST_STARTED_BODY + "<nav class=\"content\">\n";
-		String result = MarkupUtil.addStartNavWithClass(TEST_STARTED_BODY, "content");
+		String result = MarkupUtil.addStartNav(TEST_STARTED_BODY, null, "content");
 		assertEquals(getErrorMessage(valid, result), valid, result);
 	}
 	
@@ -157,7 +158,7 @@ public class MarkupTest {
 	@Test
 	public void testStartNavNoParams() {
 		String valid = TEST_STARTED_BODY + "<nav>\n";
-		String result = MarkupUtil.addStartNav(TEST_STARTED_BODY);
+		String result = MarkupUtil.addStartNav(TEST_STARTED_BODY, null, null);
 		assertEquals(getErrorMessage(valid, result), valid, result);
 	}
 	
@@ -168,7 +169,7 @@ public class MarkupTest {
 		assertEquals(getErrorMessage(valid, result), valid, result);
 	}
 	
-	public String getErrorMessage(String expected, String result) {
+	private String getErrorMessage(String expected, String result) {
 		return "Expected \"" + expected + "\" but got \"" + result + "\".";
 	}
 
