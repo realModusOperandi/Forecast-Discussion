@@ -1,3 +1,4 @@
+@file:JvmName("MarkupUtil")
 package util
 
 fun endPage(page: String): String {

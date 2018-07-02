@@ -15,6 +15,8 @@ repositories {
 dependencies {
     compile(kotlin("stdlib-jdk8"))
     providedCompile("javax", "javaee-api", "8.0")
+
+    testImplementation("junit", "junit", "4.12")
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_1_8
