@@ -97,7 +97,7 @@ em {
 .navsmall div {
 	height: inherit;
 	
-	padding: 0px 20px;
+	padding: 2px 20px;
 	margin: 0px;
 
 	display: flex;
@@ -107,6 +107,8 @@ em {
 	white-space: nowrap;
 	
 	color: #aaa;
+
+	box-sizing: border-box;
 }
 
 .navsmall a {
@@ -117,17 +119,21 @@ em {
 
 .navsmall div:hover {
 	color: white;
+    background-color: rgb(20, 20, 20);
 }
 
 .navsmall .current-page {
 	color: white;
+	border-bottom: 2px solid white;
+    padding-bottom: 0px;
+    background-color: rgb(20, 20, 20);
 }
 
 @media screen and (max-width: 799px) and (min-width: 500px) {
 	#navtitle {
 		display: none;
 	}
-	
+
 	#navtitle-abbrev {
 		display: inherit;
 	}
@@ -135,53 +141,55 @@ em {
 
 @media screen and (max-width: 499px) {
 	#navcontainer {
-		height: 70px;
+		height: 40px;
 	}
-	
+
 	#nav {
 		flex-flow: column;
 		justify-content: center;
 		min-width: 320px;
 	}
-	
+
 	.navlarge {
+	    display: none;
 		flex: 1;
 		justify-content: center;
 		padding-top: 5px;
 	}
-	
+
 	#navtitle {
-		display: inherit;
+		display: none;
 	}
-	
+
 	#navtitle-abbrev {
 		display: none;
 	}
-	
+
 	.navsmall {
-		padding-bottom: 5px;
 		margin-left: 0px;
 	}
-	
+
 	.navsmall div {
-		padding-bottom: 5px;
-		padding-left: 15px;
-		padding-right: 15px;
+		padding: 2px 15px;
+	}
+
+	.navsmall .current-page {
+	    padding-bottom: 0px;
 	}
 }
 
 #titlecontainer {
 	order: 1;
-	
+
 	height: 500px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
 	width: 100%;
-	
+
 	background-size: auto;
-	background-image: url(%%BACKGROUND_IMAGE%%);
+	background-image: url(images/background.jpg);
 }
 
 @media screen and (max-height: 499px) {
@@ -192,7 +200,7 @@ em {
 
 #title {
 	color: white;
-	filter: none(); 
+	filter: none();
 	max-width: 80%;
 	margin: auto;
 	font-family: "PT Serif", "Sorts Mill Goudy", Georgia, serif;
@@ -217,7 +225,7 @@ em {
 	flex: 1;
 	width: 100%;
 	background-color: rgb(248, 241, 227);
-	
+
 }
 
 #content {
@@ -230,8 +238,8 @@ em {
 	color: rgb(85, 53, 41);
 	font-family: "PT Serif", "Sorts Mill Goudy", Georgia, serif;
 	font-size: 0.9em;
-	
-	box-sizing: content-box;	
+
+	box-sizing: content-box;
 }
 
 
@@ -249,11 +257,11 @@ em {
 	width: 85%;
 	max-width: 800px;
 	color: white;
-	
+
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	
+
 	font-family: "PT Serif", "Sorts Mill Goudy", Georgia, serif;
 	font-size: 1.3em;
 }
@@ -266,12 +274,13 @@ em {
 	#title h2 {
 		font-size: 2.5em;
 	}
-	
+
 	h3 {
 		font-size: 1.7em;
 	}
-	
+
 	p, em, li {
 		font-size: 1.1em;
 	}
 }
+
