@@ -164,9 +164,9 @@ class CurrentForecastServlet : HttpServlet() {
     }
 
     private fun createParagraph(page: String, body: List<String>, paragraphStart: Int, paragraphEnd: Int): String {
-        var paragraph = "<p>" + body[paragraphStart]
+        var paragraph = "<p>" + body[paragraphStart].trim()
         for (j in paragraphStart + 1 until paragraphEnd) {
-            paragraph = paragraph + "\n" + body[j]
+            paragraph = paragraph + " " + body[j].trim()
         }
         paragraph += "</p>"
         return page + paragraph
@@ -190,7 +190,7 @@ class CurrentForecastServlet : HttpServlet() {
         } else {
             page += "<p>"
             for (j in sectionStart + 1 until sectionEnd) {
-                page += body[j]
+                page += body[j].trim() + " "
             }
             page += "</p>\n"
         }
@@ -250,7 +250,7 @@ class CurrentForecastServlet : HttpServlet() {
         @JvmStatic
         val footers = arrayOf("oh hey", "hey", "what's up", "hope the weather's real nice bb", "don't get rained on", "nice", "storm's comin", "it'll blow over eventually", "better lay low")
         @JvmStatic
-        var states: Map<String, String> = mapOf("MN" to "Minnesota", "WI" to "Wisconsin", "IA" to "Iowa")
+        var states: Map<String, String> = mapOf("MN" to "Minnesota", "WI" to "Wisconsin", "IA" to "Iowa", "LS" to "Lake Superior", "AZ" to "Arizona", "CA" to "California")
     }
 }// TODO Auto-generated constructor stub
 
