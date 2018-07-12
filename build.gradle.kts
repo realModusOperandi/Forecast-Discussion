@@ -3,7 +3,7 @@ import net.wasdev.wlp.gradle.plugins.extensions.ServerExtension
 import kotlin.collections.mapOf
 
 plugins {
-    kotlin("jvm") version "1.2.50"
+    kotlin("jvm") version "1.2.51"
     id("net.wasdev.wlp.gradle.plugins.Liberty")  version "2.2"
     war
 }
@@ -22,8 +22,8 @@ dependencies {
 
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-val httpPort by extra { 8080 }
-val httpsPort by extra { 9443 }
+val httpPort by extra { 12100 }
+val httpsPort by extra { 12105 }
 val applicationName by extra { (tasks["war"] as War).archiveName }
 
 liberty {
