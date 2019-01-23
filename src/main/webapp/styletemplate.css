@@ -189,7 +189,7 @@ em {
 	width: 100%;
 
 	background-size: auto;
-	background-image: url(images/background.jpg);
+	background-image: url(%%BACKGROUND_IMAGE%%);
 }
 
 @media screen and (max-height: 499px) {

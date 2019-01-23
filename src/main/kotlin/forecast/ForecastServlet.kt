@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse
 /**
  * @see HttpServlet#HttpServlet()
  */
-@WebServlet("")
+@WebServlet(urlPatterns = ["index.html", "/current"])
 class CurrentForecastServlet : HttpServlet() {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

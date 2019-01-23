@@ -3,8 +3,8 @@ import net.wasdev.wlp.gradle.plugins.extensions.ServerExtension
 import kotlin.collections.mapOf
 
 plugins {
-    kotlin("jvm") version "1.2.50"
-    id("net.wasdev.wlp.gradle.plugins.Liberty")  version "2.2"
+    kotlin("jvm") version "1.3.11"
+    id("net.wasdev.wlp.gradle.plugins.Liberty")  version "2.6.3"
     war
 }
 
@@ -27,8 +27,7 @@ val httpsPort by extra { 9443 }
 val applicationName by extra { (tasks["war"] as War).archiveName }
 
 liberty {
-    server = ServerExtension()
-    server.name = "forecastServer"
+    server = ServerExtension("forecastServer")
     server.apps = listOf(tasks["war"])
     server.bootstrapProperties = mapOf("httpPort" to httpPort, "httpsPort" to httpsPort, "applicationName" to applicationName)
     server.configDirectory = file("src/main/liberty/config")
