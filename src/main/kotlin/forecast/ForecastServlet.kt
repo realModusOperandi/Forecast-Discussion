@@ -241,7 +241,6 @@ class CurrentForecastServlet : HttpServlet() {
      */
     @Throws(ServletException::class, IOException::class)
     override fun doPost(request: HttpServletRequest, response: HttpServletResponse) {
-        // TODO Auto-generated method stub
         doGet(request, response)
     }
 
@@ -252,113 +251,5 @@ class CurrentForecastServlet : HttpServlet() {
         @JvmStatic
         var states: Map<String, String> = mapOf("MN" to "Minnesota", "WI" to "Wisconsin", "IA" to "Iowa", "LS" to "Lake Superior", "AZ" to "Arizona", "CA" to "California")
     }
-}// TODO Auto-generated constructor stub
+}
 
-
-// Manually ported:
-
-//package forecast
-//
-//import java.util.*
-//import javax.servlet.annotation.WebServlet
-//import javax.servlet.http.HttpServlet
-//
-//@WebServlet("/")
-//class ForecastServlet : HttpServlet() {
-//    companion object {
-//        const val serialVersionUID = 1L
-//        @JvmStatic
-//        val footers: Array<String> = arrayOf(
-//                "oh hey",
-//                "hey",
-//                "what's up",
-//                "hope the weather's real nice bb",
-//                "don't get rained on",
-//                "nice",
-//                "storm's comin",
-//                "it'll blow over eventually",
-//                "better lay low"
-//        )
-//
-//        val states: Map<String, String> = mapOf(
-//                "MN" to "Minnesota",
-//                "WI" to "Wisconsin",
-//                "IA" to "Iowa"
-//        )
-//    }
-//
-//    private fun createHeading(page: String, body: Array<String>, sectionStart: Int, sectionEnd: Int): String {
-//        var heading: String = when {
-//            body[sectionStart].endsWith("...") -> body[sectionStart].substring(1, body[sectionStart].indexOf("..."))
-//            else -> body[sectionStart].substring(1).replace("...", ": ").replace("(", "").replace(")", "")
-//        }
-//
-//        var bodyString: String = when {
-//            sectionEnd - sectionStart == 2 -> if (body[sectionStart + 1].length > 0 && ".,;:?!".indexOf(body[sectionStart + 1][body[sectionStart + 1].length - 1]) == -1) {
-//                "<em>${body[sectionStart + 1]}</em>\n"
-//            } else {
-//                "<p>${body[sectionStart + 1]}</p>\n"
-//            }
-//
-//            else -> "<p>${body.sliceArray(sectionStart+1..sectionEnd).reduce(String::plus)}</p>\n"
-//        }
-//
-//        return """
-//            $page
-//            $heading
-//            $bodyString
-//        """.trimIndent()
-//    }
-//
-//    private fun createWarnings(page: String, body: Array<String>, sectionStart: Int, sectionEnd: Int): String {
-//        val header = """
-//            <h3>${body[sectionStart].substring(1, body[sectionStart].length - 3).replace("/", ", ")}</h3>
-//        """.trimIndent()
-//
-//        var bodyString = "<ul>\n"
-//        for (k in sectionStart..sectionEnd) {
-//            if (body[k].toLowerCase().startsWith("none")) {
-//                bodyString += "<li>None.</li>\n"
-//                break
-//            }
-//
-//            val parts = body[k].split("\\.\\.\\.")
-//            when {
-//                parts.size == 2 -> {
-//                    bodyString += "<li>${if (states.containsKey(parts[0])) states[parts[0]] else parts[0]}"
-//                    bodyString += if (parts[1].toLowerCase().startsWith("none")) {
-//                        ": None.</li>\n"
-//                    } else {
-//                        """
-//                        <ul>
-//                            <li>${parts[1]}
-//                        """.trimIndent()
-//                    }
-//                }
-//                body[k+1] == "" -> bodyString += "${body[k]}</li>\n"
-//                body[k+1].contains("...") -> bodyString += "</ul>\n"
-//                else -> bodyString += body[k]
-//            }
-//        }
-//
-//        return """
-//            $page
-//            $header
-//            $bodyString
-//        """.trimIndent()
-//
-//    }
-//
-//    private fun createFooter(page: String): String {
-//        val r = Random()
-//        val footer = """
-//            <div id="footercontainer">
-//                <div id="footer">
-//                    <p>${footers[r.nextInt(footers.size)]}</p>
-//                </div>
-//            </div>
-//        """.trimIndent()
-//
-//        return page + footer
-//    }
-//}
