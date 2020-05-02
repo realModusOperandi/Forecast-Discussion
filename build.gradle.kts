@@ -21,10 +21,15 @@ dependencies {
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.targetCompatibility = JavaVersion.VERSION_1_8
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
+}
 
 val httpPort by extra { 8080 }
 val httpsPort by extra { 9443 }
-val applicationName by extra { (tasks["war"] as War).archiveName }
+val applicationName by extra { (tasks["war"] as War).archiveFileName.get() }
 
 liberty {
     server = ServerExtension("forecastServer")
@@ -35,7 +40,7 @@ liberty {
 
 war {
     val war = tasks["war"] as War
-    war.archiveFileName.set("${war.archiveBaseName}.${war.archiveExtension}")
+    war.archiveFileName.set("${war.archiveBaseName.get()}.${war.archiveExtension.get()}")
 }
 
 tasks["clean"].dependsOn("libertyStop")

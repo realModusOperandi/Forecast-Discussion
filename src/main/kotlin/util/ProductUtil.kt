@@ -23,3 +23,16 @@ fun findEndOfWarnings(body: List<String>, start: Int): Int {
     }
     return sectionEnd
 }
+
+fun formatHeading(heading: String): String {
+    return if (heading.endsWith("...")) {
+        heading.substring(1, heading.indexOf("..."))
+    } else {
+        heading.substring(1).replace("...", ": ").replace("(", "").replace(")", "")
+    }
+}
+
+fun formatBody(body: String): String {
+    val result = body.trim().trim('&').trim().replace('`', '\'')
+    return result
+}
