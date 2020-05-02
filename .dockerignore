@@ -1,0 +1,9 @@
+build
+/.apt_generated/
+/.gradle/
+/bin/
+/.idea/
+/.classpath
+/.project
+/.settings/org.eclipse.buildship.core.prefs
+/Forecast Discussions.iml

@@ -27,7 +27,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-val httpPort by extra { 8080 }
+val httpPort by extra { 9080 }
 val httpsPort by extra { 9443 }
 val applicationName by extra { (tasks["war"] as War).archiveFileName.get() }
 
