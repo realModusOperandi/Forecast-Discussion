@@ -4,7 +4,7 @@ import model.*
 
 class PageReader {
     companion object {
-        fun read(body: List<String>, office: String, contextPath: String): Page {
+        fun read(body: List<String>): Page {
             val sectionsText = body.subList(util.findEndOfTitle(body, 0) + 1, body.size)
 
             return Page(getTitle(body), getSections(sectionsText), getListSections(sectionsText))

@@ -44,7 +44,7 @@ class CurrentForecastServlet : HttpServlet() {
         if (debug) {
             sendResponse(response, body.stream().reduce("") { a, b -> a + b + "\n" })
         }
-        val page = PageReader.read(body, office, servletContext.contextPath)
+        val page = PageReader.read(body)
         sendResponse(response, DiscussionPage.createPage(page, office, servletContext.contextPath))
     }
 

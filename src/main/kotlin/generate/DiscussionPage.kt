@@ -112,21 +112,21 @@ class DiscussionPage {
         }
 
         fun createNav(page: String, office: String, contextPath: String): String {
-            var page = util.addStartDiv(page, "navcontainer")
-            page = util.addStartDiv(page, "nav")
-            page = util.addStartDiv(page, "navtitle", "navlarge")
-            page = "$page<span>Forecast Discussions</span>"
-            page = util.addEndDiv(page)
-            page = util.addStartDiv(page, "navtitle-abbrev", "navlarge")
-            page += "FD"
-            page = util.addEndDiv(page)
-            page = util.addStartDiv(page, className = "navsmall")
-            page = util.addURL(page, "$contextPath?office=ARX", util.addStartDiv("", null, (if (office == "ARX") "current-page" else null)) + "la crosse" + util.addEndDiv(""))
-            page = util.addURL(page, "$contextPath?office=DLH", util.addStartDiv("", null, (if (office == "DLH") "current-page" else null)) + "duluth" + util.addEndDiv(""))
-            page = util.addURL(page, "$contextPath?office=PSR", util.addStartDiv("", null, (if (office == "PSR") "current-page" else null)) + "phoenix" + util.addEndDiv(""))
-            page = util.addEndDiv(page)
-            page = util.addEndDiv(util.addEndDiv(page))
-            return page
+            var nav = util.addStartDiv(page, "navcontainer")
+            nav = util.addStartDiv(nav, "nav")
+            nav = util.addStartDiv(nav, "navtitle", "navlarge")
+            nav = "$nav<span>Forecast Discussions</span>"
+            nav = util.addEndDiv(nav)
+            nav = util.addStartDiv(nav, "navtitle-abbrev", "navlarge")
+            nav += "FD"
+            nav = util.addEndDiv(nav)
+            nav = util.addStartDiv(nav, className = "navsmall")
+            nav = util.addURL(nav, "$contextPath?office=ARX", util.addStartDiv("", null, (if (office == "ARX") "current-page" else null)) + "la crosse" + util.addEndDiv(""))
+            nav = util.addURL(nav, "$contextPath?office=DLH", util.addStartDiv("", null, (if (office == "DLH") "current-page" else null)) + "duluth" + util.addEndDiv(""))
+            nav = util.addURL(nav, "$contextPath?office=PSR", util.addStartDiv("", null, (if (office == "PSR") "current-page" else null)) + "phoenix" + util.addEndDiv(""))
+            nav = util.addEndDiv(nav)
+            nav = util.addEndDiv(util.addEndDiv(nav))
+            return nav
         }
 
         fun createFooter(page: String): String {
