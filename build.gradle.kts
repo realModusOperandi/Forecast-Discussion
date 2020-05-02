@@ -3,8 +3,8 @@ import net.wasdev.wlp.gradle.plugins.extensions.ServerExtension
 import kotlin.collections.mapOf
 
 plugins {
-    kotlin("jvm") version "1.3.11"
-    id("net.wasdev.wlp.gradle.plugins.Liberty")  version "2.6.3"
+    kotlin("jvm") version "1.3.72"
+    id("net.wasdev.wlp.gradle.plugins.Liberty")  version "2.6.5"
     war
 }
 
@@ -13,11 +13,11 @@ repositories {
 }
 
 dependencies {
-    compile(kotlin("stdlib-jdk8"))
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.72")
     providedCompile("javax", "javaee-api", "8.0")
 
     testImplementation("junit", "junit", "4.12")
-    libertyRuntime("io.openliberty", "openliberty-runtime", "[18.0.0.2,)")
+    libertyRuntime("io.openliberty", "openliberty-runtime", "[20.0.0.3,)")
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_1_8
@@ -35,7 +35,7 @@ liberty {
 
 war {
     val war = tasks["war"] as War
-    war.archiveName = "${war.baseName}.${war.extension}"
+    war.archiveFileName.set("${war.archiveBaseName}.${war.archiveExtension}")
 }
 
 tasks["clean"].dependsOn("libertyStop")
