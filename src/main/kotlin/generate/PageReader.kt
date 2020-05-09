@@ -13,18 +13,18 @@ class PageReader {
         fun getTitle(body: List<String>): Title {
             val start = 0
             val title = body[start]
-            var subtitles = body.subList(start + 1, util.findEndOfTitle(body, start))
+            val subtitles = body.subList(start + 1, util.findEndOfTitle(body, start))
             return Title(title, subtitles)
         }
 
         fun getSections(body: List<String>): List<Section> {
             val sectionTexts = splitSections(body)
-            var sections = mutableListOf<Section>()
+            val sections = mutableListOf<Section>()
 
             for (st in sectionTexts) {
                 if (st[0].toLowerCase().contains("watches")) {
                     // Watches section goes in list sections
-                    continue;
+                    continue
                 }
                 var bodyStart = 1
                 var title = Title(util.formatHeading(st[0]), listOf())
@@ -44,7 +44,7 @@ class PageReader {
                         string += "$p "
                     }
                 }
-                val paragraphs = paras.filter { !it.trim().equals("&&")}.map { Paragraph(it) }
+                val paragraphs = paras.filter { it.trim() != "&&" }.map { Paragraph(it) }
                 sections.add(Section(title, paragraphs))
             }
             return sections.toList()
@@ -52,12 +52,12 @@ class PageReader {
 
         fun getListSections(body: List<String>): List<ListSection> {
             val sectionTexts = splitSections(body)
-            var sections = mutableListOf<ListSection>()
+            val sections = mutableListOf<ListSection>()
 
             for (st in sectionTexts) {
                 if (!st[0].toLowerCase().contains("watches")) {
                     // Ignore non watches section
-                    continue;
+                    continue
                 }
 
                 // Watches section has no subtitle
@@ -77,12 +77,12 @@ class PageReader {
             }
 
             // `start` is now the first line of the first section
-            var sections: MutableList<List<String>> = mutableListOf<List<String>>()
+            val sections: MutableList<List<String>> = mutableListOf()
 
             var i = start
             while (i < body.size) {
                 if (body[i].startsWith("$$")) {
-                    break;
+                    break
                 }
 
                 if (body[i].trim() == "" || body[i].startsWith("&&")) {
@@ -91,7 +91,7 @@ class PageReader {
                 }
 
                 if (i < body.size && body[i].startsWith(".")) {
-                    var section: MutableList<String> = mutableListOf<String>()
+                    val section: MutableList<String> = mutableListOf()
                     section.add(util.formatBody(body[i]))
                     i++
                     while (i < body.size && (!body[i].startsWith(".") || body[i].startsWith("&&"))) {

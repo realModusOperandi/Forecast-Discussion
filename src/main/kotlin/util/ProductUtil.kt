@@ -16,14 +16,6 @@ fun findEndOfParagraph(body: List<String>, i: Int): Int {
     return paragraphEnd
 }
 
-fun findEndOfWarnings(body: List<String>, start: Int): Int {
-    var sectionEnd = start
-    while (sectionEnd < body.size && body[sectionEnd] != "&&") {
-        sectionEnd++
-    }
-    return sectionEnd
-}
-
 fun formatHeading(heading: String): String {
     return if (heading.endsWith("...")) {
         heading.substring(1, heading.indexOf("..."))
@@ -33,6 +25,5 @@ fun formatHeading(heading: String): String {
 }
 
 fun formatBody(body: String): String {
-    val result = body.trim().trim('&').trim().replace('`', '\'')
-    return result
+    return body.trim().trim('&').trim().replace('`', '\'')
 }

@@ -50,15 +50,7 @@ fun addEndBody(page: String): String {
 }
 
 fun addStartDiv(input: String, id: String? = null, className: String? = null): String {
-    var div = "<div"
-    if (id != null) {
-        div = "$div id=\"$id\""
-    }
-    if (className != null) {
-        div = "$div class=\"$className\""
-    }
-    div = "$div>\n"
-    return input + div
+    return addStartElement(input, "<div", id, className)
 }
 
 fun addEndDiv(input: String): String {
@@ -66,15 +58,7 @@ fun addEndDiv(input: String): String {
 }
 
 fun addStartNav(input: String, id: String? = null, className: String? = null): String {
-    var nav = "<nav"
-    if (id != null) {
-        nav = "$nav id=\"$id\""
-    }
-    if (className != null) {
-        nav = "$nav class=\"$className\""
-    }
-    nav = "$nav>\n"
-    return input + nav
+    return addStartElement(input, "<nav", id, className)
 }
 
 fun addEndNav(input: String): String {
@@ -83,4 +67,16 @@ fun addEndNav(input: String): String {
 
 fun addURL(input: String, url: String, text: String): String {
     return "$input<a href=\"$url\">$text</a>"
+}
+
+private fun addStartElement(input: String, element: String, id: String?, className: String?): String {
+    var elem = element
+    if (id != null) {
+        elem = "$elem id=\"$id\""
+    }
+    if (className != null) {
+        elem = "$elem class=\"$className\""
+    }
+    elem = "$elem>\n"
+    return input + elem
 }

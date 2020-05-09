@@ -16,7 +16,7 @@ body {
 }
 
 h2, h3 {
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 h2 {
@@ -98,7 +98,7 @@ em {
 	height: inherit;
 	
 	padding: 2px 20px;
-	margin: 0px;
+	margin: 0;
 
 	display: flex;
 	align-items: center;
@@ -124,8 +124,8 @@ em {
 
 .navsmall .current-page {
 	color: white;
-	border-bottom: 2px solid white;
-    padding-bottom: 0px;
+	border-top: 2px solid white;
+    padding-top: 0;
     background-color: rgb(20, 20, 20);
 }
 
@@ -166,7 +166,7 @@ em {
 	}
 
 	.navsmall {
-		margin-left: 0px;
+		margin-left: 0;
 	}
 
 	.navsmall div {
@@ -174,7 +174,7 @@ em {
 	}
 
 	.navsmall .current-page {
-	    padding-bottom: 0px;
+	    padding-top: 0;
 	}
 }
 
@@ -231,9 +231,8 @@ em {
 #content {
 	width: 85%;
 	max-width: 800px;
-	padding: 5 0;
-	margin: auto;
-	margin-bottom: 2em;
+	padding: 5px 0;
+	margin: auto auto 2em;
 
 	color: rgb(85, 53, 41);
 	font-family: "PT Serif", "Sorts Mill Goudy", Georgia, serif;
