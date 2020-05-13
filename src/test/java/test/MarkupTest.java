@@ -52,14 +52,14 @@ public class MarkupTest {
 	
 	@Test
 	public void testMobileViewportIntWidth() {
-		String valid = TEST_STARTED_HEAD + "<meta name=\"viewport\" content=\"width=1024, initial-scale=1.0\">\n";
+		String valid = TEST_STARTED_HEAD + "<meta name=\"viewport\" content=\"width=1024, initial-scale=1.0 viewport-fit=cover\">\n";
 		String result = MarkupUtil.addMobileViewport(TEST_STARTED_HEAD, 1024);
 		assertEquals(getErrorMessage(valid, result), valid, result);
 	}
 	
 	@Test
 	public void testMobileViewportStringWidth() {
-		String valid = TEST_STARTED_HEAD + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
+		String valid = TEST_STARTED_HEAD + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0 viewport-fit=cover\">\n";
 		String result = MarkupUtil.addMobileViewport(TEST_STARTED_HEAD, "device-width");
 		assertEquals(getErrorMessage(valid, result), valid, result);
 	}
