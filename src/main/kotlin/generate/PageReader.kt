@@ -61,7 +61,7 @@ class PageReader {
                 }
 
                 // Watches section has no subtitle
-                val title = Title(util.formatHeading(st[0]), listOf())
+                val title = Title(util.formatHeading(st[0]).replace("/", ", "), listOf())
                 val items = st.subList(1, st.size).filter { !it.contains("&&") }
 
                 sections.add(ListSection(title, items))

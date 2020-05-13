@@ -26,15 +26,19 @@ fun addHTMLTitle(input: String, title: String): String {
 }
 
 fun addMobileViewport(input: String, width: Int): String {
-    return "$input<meta name=\"viewport\" content=\"width=$width, initial-scale=1.0\">\n"
+    return addMobileViewport(input, width.toString())
 }
 
 fun addMobileViewport(input: String, widthValue: String): String {
-    return "$input<meta name=\"viewport\" content=\"width=$widthValue, initial-scale=1.0\">\n"
+    return "$input<meta name=\"viewport\" content=\"width=$widthValue, initial-scale=1.0 viewport-fit=cover\">\n"
 }
 
 fun addStylesheetLink(input: String, styleURL: String): String {
     return "$input<link rel=\"stylesheet\" type=\"text/css\" href=\"$styleURL\"/>\n"
+}
+
+fun addScriptReference(input: String, src: String): String {
+    return "$input<script type=\"text/javascript\" src=\"$src\"></script>\n"
 }
 
 fun addWebFont(input: String, fontName: String): String {

@@ -18,12 +18,14 @@ class DiscussionPage {
         }
 
         fun createTitle(result: String, page: Page): String {
-            var title = util.addStartDiv("", "titlecontainer")
+            var titleBackground = util.addStartDiv("", className = "titlebackground")
+            var title = util.addStartDiv(titleBackground, "titlecontainer")
             title = util.addStartDiv(title, "title")
             title = "$title<h2>${page.title.title}</h2>\n"
             for (subtitle in page.title.subtitles) {
                 title = "$title<em>$subtitle</em><br/>\n"
             }
+            title = util.addEndDiv(title)
             title = util.addEndDiv(title)
             title = util.addEndDiv(title)
             return result + title
@@ -101,11 +103,10 @@ class DiscussionPage {
             page = util.addStartHead(page)
             page = util.addHTMLTitle(page, "Area Forecast Discussion")
             page = util.addStylesheetLink(page, "${contextPath}/style.css")
-            page = util.addWebFont(page, "Sorts+Mill+Goudy")
-            page = util.addWebFont(page, "Crimson+Text")
-            page = util.addWebFont(page, "EB+Garamond")
-            page = util.addWebFont(page, "PT+Serif")
+            page = util.addWebFont(page, "Open Sans")
+            page = util.addWebFont(page, "Raleway")
             page = util.addMobileViewport(page, "device-width")
+            page = util.addScriptReference(page, "${contextPath}/scripts/navbar.js")
             page = util.addEndHead(page)
             page = util.addStartBody(page)
             return page
