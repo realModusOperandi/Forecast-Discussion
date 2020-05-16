@@ -2,6 +2,8 @@ package forecast
 
 import generate.DiscussionPage
 import generate.PageReader
+import util.getProductText
+import util.trimContents
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.IOException
@@ -45,30 +47,6 @@ class CurrentForecastServlet : HttpServlet() {
         sendResponse(response, DiscussionPage.createPage(page, office, servletContext.contextPath))
     }
 
-    private fun getProductText(productURL: String): List<String> {
-        val url = URL(productURL)
-        var contents: List<String> = listOf()
-        try {
-            BufferedReader(InputStreamReader(url.openStream())).use { `in` -> contents = `in`.lineSequence().toList() }
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        return contents
-    }
-
-    private fun trimContents(contents: List<String>): List<String> {
-        var firstLine = 0
-        var lastLine = 0
-        for (i in contents.indices) {
-            if (contents[i].startsWith("Area Forecast Discussion")) {
-                firstLine = i
-            } else if (contents[i] == "$$") {
-                lastLine = i - 2
-            }
-        }
-        return contents.subList(firstLine, lastLine + 1)
-    }
-
     private fun sendResponse(response: HttpServletResponse, page: String) {
         try {
             BufferedWriter(response.writer).use { out -> out.write(page) }
@@ -87,10 +65,6 @@ class CurrentForecastServlet : HttpServlet() {
 
     companion object {
         private const val serialVersionUID = 1L
-        @JvmStatic
-        val footers = arrayOf("oh hey", "hey", "what's up", "hope the weather's real nice bb", "don't get rained on", "nice", "storm's comin", "it'll blow over eventually", "better lay low", "hail, traveler")
-        @JvmStatic
-        var states: Map<String, String> = mapOf("MN" to "Minnesota", "WI" to "Wisconsin", "IA" to "Iowa", "LS" to "Lake Superior", "AZ" to "Arizona", "CA" to "California")
     }
 }
 

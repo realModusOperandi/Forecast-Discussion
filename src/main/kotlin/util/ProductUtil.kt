@@ -27,3 +27,6 @@ fun formatHeading(heading: String): String {
 fun formatBody(body: String): String {
     return body.trim().trim('&').trim().replace('`', '\'')
 }
+
+val footers = arrayOf("oh hey", "hey", "what's up", "hope the weather's real nice bb", "don't get rained on", "nice", "storm's comin", "it'll blow over eventually", "better lay low", "hail, traveler")
+var states: Map<String, String> = mapOf("MN" to "Minnesota", "WI" to "Wisconsin", "IA" to "Iowa", "LS" to "Lake Superior", "AZ" to "Arizona", "CA" to "California")

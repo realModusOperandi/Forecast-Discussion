@@ -1,6 +1,5 @@
 package generate
 
-import forecast.CurrentForecastServlet
 import model.Page
 import model.Paragraph
 import model.Title
@@ -8,11 +7,11 @@ import java.util.*
 
 class DiscussionPage {
     companion object {
-        fun createPage(page: Page, office: String, contextPath: String): String {
+        fun createPage(page: Page, office: String, contextPath: String, randomeQuote: Boolean = true): String {
             var result = beginPage(contextPath)
             result = createNav(result, office, contextPath)
             result = createTitle(result, page)
-            result = createContent(result, page)
+            result = createContent(result, page, randomeQuote)
             result = util.endPage(result)
             return result
         }
@@ -31,7 +30,7 @@ class DiscussionPage {
             return result + title
         }
 
-        fun createContent(result: String, page: Page): String {
+        fun createContent(result: String, page: Page, randomQuote: Boolean): String {
             var content = result
             content = util.addStartDiv(content, "container")
             content = util.addStartDiv(content, "content")
@@ -46,7 +45,7 @@ class DiscussionPage {
                 content = createWarnings(content, section.items)
             }
 
-            content = createFooter(util.addEndDiv(util.addEndDiv(content)))
+            content = createFooter(util.addEndDiv(util.addEndDiv(content)), randomQuote)
             return content
         }
 
@@ -78,7 +77,7 @@ class DiscussionPage {
                 }
                 val parts: Array<String> = item.split(("\\.\\.\\.").toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 if (parts.size == 2) {
-                    list += "<li>" + (if (CurrentForecastServlet.states.containsKey(parts[0])) CurrentForecastServlet.states[parts[0]] else parts[0])
+                    list += "<li>" + (if (util.states.containsKey(parts[0])) util.states[parts[0]] else parts[0])
                     if (parts[1].toLowerCase().startsWith("none")) {
                         list = "$list: None.\n"
                     } else {
@@ -132,11 +131,18 @@ class DiscussionPage {
             return nav
         }
 
-        fun createFooter(page: String): String {
+        fun createFooter(page: String, randomQuote: Boolean): String {
             val r = Random()
             val footer = ("<div id=\"footercontainer\">\n"
                     + "<div id=\"footer\">\n"
-                    + "<p>" + CurrentForecastServlet.footers[r.nextInt(CurrentForecastServlet.footers.size)] + "</p>\n"
+                    + "<p>" +
+                    if (randomQuote) {
+                        util.footers[r.nextInt(util.footers.size)]
+
+                    } else {
+                        util.footers[0]
+                    }
+                    + "</p>\n"
                     + "</div>\n"
                     + "</div>\n")
             return page + footer
