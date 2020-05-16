@@ -18,8 +18,8 @@ class DiscussionPage {
         }
 
         fun createTitle(result: String, page: Page): String {
-            var titleBackground = util.addStartDiv("", className = "titlebackground")
-            var title = util.addStartDiv(titleBackground, "titlecontainer")
+            var title = util.addStartDiv("", className = "title-bg")
+            title = util.addStartDiv(title, "titlecontainer")
             title = util.addStartDiv(title, "title")
             title = "$title<h2>${page.title.title}</h2>\n"
             for (subtitle in page.title.subtitles) {
@@ -113,7 +113,9 @@ class DiscussionPage {
         }
 
         fun createNav(page: String, office: String, contextPath: String): String {
-            var nav = util.addStartDiv(page, "navcontainer")
+            var nav = util.addStartDiv(page, "nav-bg")
+            nav = util.addEndDiv(nav)
+            nav = util.addStartDiv(nav, "navcontainer")
             nav = util.addStartDiv(nav, "nav")
             nav = util.addStartDiv(nav, "navtitle", "navlarge")
             nav = "$nav<span>Forecast Discussions</span>"
@@ -126,7 +128,7 @@ class DiscussionPage {
             nav = util.addURL(nav, "$contextPath?office=DLH", util.addStartDiv("", null, (if (office == "DLH") "current-page" else null)) + "duluth" + util.addEndDiv(""))
             nav = util.addURL(nav, "$contextPath?office=PSR", util.addStartDiv("", null, (if (office == "PSR") "current-page" else null)) + "phoenix" + util.addEndDiv(""))
             nav = util.addEndDiv(nav)
-            nav = util.addEndDiv(util.addEndDiv(nav))
+            nav = util.addEndDiv(util.addEndDiv(util.addEndDiv(nav)))
             return nav
         }
 

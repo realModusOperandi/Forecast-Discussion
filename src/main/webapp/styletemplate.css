@@ -41,11 +41,19 @@ em {
 	display: inline-block;
 }
 
-#navcontainer {
+#nav-bg {
 	width: 100%;
 	height: 50px;
 	position: fixed;
 	z-index: 2;
+	background: linear-gradient(to top right, rgb(10, 12, 20), rgb(21, 24, 70));
+}
+
+#navcontainer {
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	z-index: 3;
 }
 
 #nav {
@@ -63,12 +71,12 @@ em {
 
 
 .navtop {
-	background-color: rgba(0, 0, 0, 0);
+	opacity: 0;
 	transition: all .25s;
 }
 
 .navscroll {
-	background-color:  rgb(43, 48, 60);
+	opacity: 100%;
 	transition: all .25s;
 }
 
@@ -150,6 +158,10 @@ em {
 }
 
 @media screen and (max-width: 499px) {
+	#nav-bg {
+		height: 40px;
+	}
+
 	#navcontainer {
 		height: 40px;
 	}
@@ -188,7 +200,7 @@ em {
 	}
 }
 
-.titlebackground {
+.title-bg {
 	height: 500px;
 	width: 100%;
 
@@ -270,7 +282,7 @@ em {
 	height: 50px;
 	overflow: hidden;
 	width: 100%;
-	background-color: rgb(43, 48, 60);
+	background: linear-gradient(to top right, rgb(10, 12, 20), rgb(21, 24, 70));
 	font-size: 1.3em;
 	justify-content: center;
 }
