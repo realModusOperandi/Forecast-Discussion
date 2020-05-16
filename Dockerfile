@@ -12,6 +12,6 @@ COPY --chown=1001:0 src/main/liberty/config/ /config/
 COPY --chown=1001:0 --from=builder /work/build/libs/ForecastDiscussions.war /config/apps/
 
 ARG VERBOSE=true
-RUN configure.sh
+RUN mkdir -p /output/resources/ && touch /output/resources/test && configure.sh
 
 EXPOSE 8080 9443
