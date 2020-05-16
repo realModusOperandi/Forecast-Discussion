@@ -4,11 +4,8 @@ import generate.DiscussionPage
 import generate.PageReader
 import util.getProductText
 import util.trimContents
-import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.IOException
-import java.io.InputStreamReader
-import java.net.URL
 import javax.servlet.ServletException
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet

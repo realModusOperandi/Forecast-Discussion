@@ -7,11 +7,11 @@ import java.util.*
 
 class DiscussionPage {
     companion object {
-        fun createPage(page: Page, office: String, contextPath: String, randomeQuote: Boolean = true): String {
+        fun createPage(page: Page, office: String, contextPath: String, randomQuote: Boolean = true): String {
             var result = beginPage(contextPath)
             result = createNav(result, office, contextPath)
             result = createTitle(result, page)
-            result = createContent(result, page, randomeQuote)
+            result = createContent(result, page, randomQuote)
             result = util.endPage(result)
             return result
         }

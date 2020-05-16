@@ -1,7 +1,6 @@
 package style
 
-import java.io.BufferedReader
-import java.io.InputStreamReader
+import util.getStylesheet
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
@@ -14,10 +13,8 @@ class StyleServlet : HttpServlet() {
     }
 
     override fun doGet(request: HttpServletRequest, response: HttpServletResponse) {
-        val style = StringBuilder()
-        val br = BufferedReader(InputStreamReader(servletContext.getResourceAsStream("/styletemplate.css")))
-        br.lines().forEachOrdered { style.append(it.replace(BACKGROUND_IMAGE, "${request.contextPath}/images/background.jpg")).append("\n") }
-        response.writer.append(style.toString())
+        val style = getStylesheet(this.javaClass.classLoader.getResourceAsStream("style/styletemplate.css"), request.contextPath)
+        response.writer.append(style)
     }
 
     override fun doPost(request: HttpServletRequest, response: HttpServletResponse) {
