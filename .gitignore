@@ -7,3 +7,4 @@ build
 /.project
 /.settings/org.eclipse.buildship.core.prefs
 /Forecast Discussions.iml
+.DS_Store

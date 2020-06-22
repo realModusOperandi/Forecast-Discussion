@@ -103,7 +103,7 @@ class DiscussionPage {
             page = util.addHTMLTitle(page, "Area Forecast Discussion")
             page = util.addStylesheetLink(page, "${contextPath}/style.css")
             page = util.addWebFont(page, "Open Sans")
-            page = util.addWebFont(page, "Raleway")
+            page = util.addWebFont(page, "Lato")
             page = util.addMobileViewport(page, "device-width")
             page = util.addScriptReference(page, "${contextPath}/scripts/navbar.js")
             page = util.addEndHead(page)

@@ -66,7 +66,7 @@ em {
 	flex-flow: row;
 	
 	margin: 0 auto;
-	font-family: "Raleway", sans-serif;
+	font-family: "Avenir Next", "Lato", sans-serif;
 }
 
 
@@ -144,7 +144,7 @@ em {
 .navsmall .current-page {
 	color: white;
 	border-top: 2px solid white;
-    padding-top: 0;
+	padding-top: 0;
 }
 
 @media screen and (max-width: 799px) and (min-width: 500px) {
@@ -173,7 +173,7 @@ em {
 	}
 
 	.navlarge {
-	    display: none;
+		display: none;
 		flex: 1;
 		justify-content: center;
 		padding-top: 5px;
@@ -196,7 +196,7 @@ em {
 	}
 
 	.navsmall .current-page {
-	    padding-top: 0;
+		padding-top: 0;
 	}
 }
 
@@ -238,7 +238,7 @@ em {
 	width: 800px;
 	max-width: 85%;
 	margin: auto;
-	font-family: "Raleway", sans-serif;
+	font-family: "Avenir Next", "Lato", sans-serif;
 }
 
 #title h2 {
@@ -272,8 +272,12 @@ em {
 	box-sizing: content-box;
 }
 
+#content h3 {
+	font-weight: 500;
+}
+
 #content h3, #content em {
-	font-family: "Raleway", sans-serif;
+	font-family: "Avenir Next", "Lato", sans-serif;
 }
 
 #footercontainer {
