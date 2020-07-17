@@ -13,7 +13,7 @@ class StyleServlet : HttpServlet() {
     }
 
     override fun doGet(request: HttpServletRequest, response: HttpServletResponse) {
-        val style = getStylesheet(this.javaClass.classLoader.getResourceAsStream("style/styletemplate.css"), request.contextPath)
+        val style = getStylesheet(this.javaClass.classLoader.getResourceAsStream("style/styletemplate.css")!!)
         response.writer.append(style)
     }
 

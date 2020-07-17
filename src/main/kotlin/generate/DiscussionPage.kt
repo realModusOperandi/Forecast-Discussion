@@ -7,9 +7,9 @@ import java.util.*
 
 class DiscussionPage {
     companion object {
-        fun createPage(page: Page, office: String, contextPath: String, randomQuote: Boolean = true): String {
-            var result = beginPage(contextPath)
-            result = createNav(result, office, contextPath)
+        fun createPage(page: Page, office: String, randomQuote: Boolean = true): String {
+            var result = beginPage()
+            result = createNav(result, office)
             result = createTitle(result, page)
             result = createContent(result, page, randomQuote)
             result = util.endPage(result)
@@ -97,21 +97,21 @@ class DiscussionPage {
             return list
         }
 
-        fun beginPage(contextPath: String): String {
+        fun beginPage(): String {
             var page = util.startHTML("")
             page = util.addStartHead(page)
             page = util.addHTMLTitle(page, "Area Forecast Discussion")
-            page = util.addStylesheetLink(page, "${contextPath}/style.css")
+            page = util.addStylesheetLink(page, "style.css")
             page = util.addWebFont(page, "Open Sans")
             page = util.addWebFont(page, "Lato")
             page = util.addMobileViewport(page, "device-width")
-            page = util.addScriptReference(page, "${contextPath}/scripts/navbar.js")
+            page = util.addScriptReference(page, "scripts/navbar.js")
             page = util.addEndHead(page)
             page = util.addStartBody(page)
             return page
         }
 
-        fun createNav(page: String, office: String, contextPath: String): String {
+        fun createNav(page: String, office: String): String {
             var nav = util.addStartDiv(page, "nav-bg")
             nav = util.addEndDiv(nav)
             nav = util.addStartDiv(nav, "navcontainer")
@@ -123,9 +123,9 @@ class DiscussionPage {
             nav += "FD"
             nav = util.addEndDiv(nav)
             nav = util.addStartDiv(nav, className = "navsmall")
-            nav = util.addURL(nav, "$contextPath?office=ARX", util.addStartDiv("", null, (if (office == "ARX") "current-page" else null)) + "la crosse" + util.addEndDiv(""))
-            nav = util.addURL(nav, "$contextPath?office=DLH", util.addStartDiv("", null, (if (office == "DLH") "current-page" else null)) + "duluth" + util.addEndDiv(""))
-            nav = util.addURL(nav, "$contextPath?office=PSR", util.addStartDiv("", null, (if (office == "PSR") "current-page" else null)) + "phoenix" + util.addEndDiv(""))
+            nav = util.addURL(nav, "?office=ARX", util.addStartDiv("", null, (if (office == "ARX") "current-page" else null)) + "la crosse" + util.addEndDiv(""))
+            nav = util.addURL(nav, "?office=DLH", util.addStartDiv("", null, (if (office == "DLH") "current-page" else null)) + "duluth" + util.addEndDiv(""))
+            nav = util.addURL(nav, "?office=PSR", util.addStartDiv("", null, (if (office == "PSR") "current-page" else null)) + "phoenix" + util.addEndDiv(""))
             nav = util.addEndDiv(nav)
             nav = util.addEndDiv(util.addEndDiv(util.addEndDiv(nav)))
             return nav

@@ -205,7 +205,7 @@ em {
 	width: 100%;
 
 	background-size: auto;
-	background-image: url(/images/background.jpg);
+	background-image: url(images/background.jpg);
 }
 #titlecontainer {
 	order: 1;
