@@ -12,7 +12,7 @@ class ForecastTest {
     @Test
     fun verifyCorrectHTML() {
         val inputHTML = File(this.javaClass.classLoader.getResource("test/discussionInput.html")!!.file).readLines()
-        val expectedHTML = File(this.javaClass.classLoader.getResource("test/expectedDiscussionOutput.html")!!.file).readText()
+        val expectedHTML = File(this.javaClass.classLoader.getResource("test/expectedDiscussionOutput.html")!!.file).readText().replace("\r\n", "\n")
         val lines = trimContents(inputHTML)
         val page = PageReader.read(lines)
         val actualHTML = DiscussionPage.createPage(page, "ARX", false)
@@ -29,7 +29,7 @@ class ForecastTest {
 
     @Test
     fun testGetStylesheet() {
-        val expectedCSS = File(this.javaClass.classLoader.getResource("test/expectedStylesheet.css")!!.file).readText()
+        val expectedCSS = File(this.javaClass.classLoader.getResource("test/expectedStylesheet.css")!!.file).readText().replace("\r\n", "\n")
         val actualCSS = util.getStylesheet(this.javaClass.classLoader.getResourceAsStream("style/styletemplate.css")!!)
         assertEquals(expectedCSS, actualCSS)
     }
