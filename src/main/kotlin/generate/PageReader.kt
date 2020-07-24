@@ -28,7 +28,7 @@ class PageReader {
                 }
                 var bodyStart = 1
                 var title = Title(util.formatHeading(st[0]), listOf())
-                if (st[2].isBlank()) {
+                if (st.size > 3 && st[2].isBlank() && !st[3].isBlank()) {
                     title = Title(util.formatHeading(st[0]), listOf(st[1]))
                     bodyStart = 3
                 }

@@ -16,7 +16,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.72")
     providedCompile("javax", "javaee-api", "8.0")
 
-//    testImplementation("junit", "junit", "4.12")
     testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.6.2")
     testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.6.2")
 

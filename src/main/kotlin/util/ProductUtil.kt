@@ -16,12 +16,24 @@ fun findEndOfParagraph(body: List<String>, i: Int): Int {
     return paragraphEnd
 }
 
-fun formatHeading(heading: String): String {
+fun formatHeading(headingText: String): String {
+    val heading = titleCasePrefix(headingText)
+
     return if (heading.endsWith("...")) {
         heading.substring(1, heading.indexOf("..."))
     } else {
         heading.substring(1).replace("...", ": ").replace("(", "").replace(")", "")
     }
+}
+
+fun titleCasePrefix(headingText: String): String {
+    if (headingText.contains("WATCHES/WARNINGS/ADVISORIES")) {
+        val heading = headingText.substring(4, headingText.indexOf("..."))
+        return "${headingText.substring(0, 4)}${heading.toLowerCase()}..."
+    }
+    val prefix = headingText.substring(1, headingText.indexOf("..."))
+    val suffix = headingText.substring(headingText.indexOf("..."))
+    return ".${prefix.toLowerCase().capitalize()}$suffix";
 }
 
 fun formatBody(body: String): String {
