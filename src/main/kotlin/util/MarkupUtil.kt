@@ -41,8 +41,8 @@ fun addScriptReference(input: String, src: String): String {
     return "$input<script type=\"text/javascript\" src=\"$src\"></script>\n"
 }
 
-fun addWebFont(input: String, fontName: String): String {
-    return "$input<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=$fontName\"/>\n"
+fun addWebFont(input: String, fontName: String, args: String = ""): String {
+    return "$input<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=$fontName$args\"/>\n"
 }
 
 fun addStartBody(input: String): String {

@@ -63,7 +63,7 @@ class MarkupTest {
 
     @Test
     fun testWebFont() {
-        val valid = "$TEST_STARTED_HEAD<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Lora\"/>\n"
+        val valid = "$TEST_STARTED_HEAD<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Lora\"/>\n"
         val result = addWebFont(TEST_STARTED_HEAD, "Lora")
         assertEquals(valid, result, getErrorMessage(valid, result))
     }

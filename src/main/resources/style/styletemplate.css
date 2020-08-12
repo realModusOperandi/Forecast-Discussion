@@ -272,12 +272,16 @@ em {
 	box-sizing: content-box;
 }
 
+#content h3, #content em {
+	font-family: "Avenir Next", "Lato", sans-serif;
+}
+
 #content h3 {
 	font-weight: 500;
 }
 
-#content h3, #content em {
-	font-family: "Avenir Next", "Lato", sans-serif;
+#content em {
+	font-weight: 400;
 }
 
 #footercontainer {

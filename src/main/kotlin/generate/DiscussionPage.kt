@@ -103,7 +103,7 @@ class DiscussionPage {
             page = util.addHTMLTitle(page, "Area Forecast Discussion")
             page = util.addStylesheetLink(page, "style.css")
             page = util.addWebFont(page, "Open Sans")
-            page = util.addWebFont(page, "Lato")
+            page = util.addWebFont(page, "Lato", ":ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap")
             page = util.addMobileViewport(page, "device-width")
             page = util.addScriptReference(page, "scripts/navbar.js")
             page = util.addEndHead(page)
