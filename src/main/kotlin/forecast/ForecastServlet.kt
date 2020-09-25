@@ -46,6 +46,7 @@ class CurrentForecastServlet : HttpServlet() {
 
     private fun sendResponse(response: HttpServletResponse, page: String) {
         try {
+            response.contentType = "text/html"
             BufferedWriter(response.writer).use { out -> out.write(page) }
         } catch (e: IOException) {
             e.printStackTrace()
