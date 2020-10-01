@@ -20,7 +20,7 @@ fun trimContents(contents: List<String>): List<String> {
     var firstLine = 0
     var lastLine = 0
     for (i in contents.indices) {
-        if (contents[i].startsWith("Area Forecast Discussion")) {
+        if (contents[i].toUpperCase().startsWith("Area Forecast Discussion".toUpperCase())) {
             firstLine = i
         } else if (contents[i] == "$$") {
             lastLine = i - 2

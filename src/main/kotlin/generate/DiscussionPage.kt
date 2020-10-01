@@ -20,7 +20,7 @@ class DiscussionPage {
             var title = util.addStartDiv("", className = "title-bg")
             title = util.addStartDiv(title, "titlecontainer")
             title = util.addStartDiv(title, "title")
-            title = "$title<h2>${page.title.title}</h2>\n"
+            title = "$title<h2>${page.title.title.toLowerCase()}</h2>\n"
             for (subtitle in page.title.subtitles) {
                 title = "$title<em>$subtitle</em><br/>\n"
             }
