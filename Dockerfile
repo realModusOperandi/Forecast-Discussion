@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk15-openj9:ubi as builder
+FROM adoptopenjdk/openjdk14-openj9:ubi as builder
 
 # Assumes build context is entire repo
 WORKDIR /work
