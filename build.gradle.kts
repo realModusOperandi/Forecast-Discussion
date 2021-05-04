@@ -2,8 +2,8 @@ import io.openliberty.tools.gradle.extensions.ServerExtension
 import kotlin.collections.mapOf
 
 plugins {
-    kotlin("jvm") version "1.4.21"
-    id("io.openliberty.tools.gradle.Liberty") version "3.1.1"
+    kotlin("jvm") version "1.4.32"
+    id("io.openliberty.tools.gradle.Liberty") version "3.1.2"
     war
 }
 
@@ -12,6 +12,7 @@ repositories {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.32")
     providedCompile("javax", "javaee-api", "8.0")
 
     testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.6.2")
@@ -31,13 +32,15 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+val httpPort by extra { "9080" }
+val httpsPort by extra { "9443" }
 val applicationName by extra { (tasks["war"] as War).archiveFileName.get() }
 
 liberty {
     server = ServerExtension()
     server.name = "forecastServer"
     server.deploy.apps = listOf(tasks["war"])
-    server.bootstrapProperties = mapOf("applicationName" to applicationName).toProperties()
+    server.bootstrapProperties = mapOf("httpPort" to httpPort, "httpsPort" to httpsPort, "applicationName" to applicationName).toProperties()
     server.configDirectory = file("src/main/liberty/config")
 }
 
