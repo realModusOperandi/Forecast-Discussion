@@ -3,7 +3,7 @@ import kotlin.collections.mapOf
 
 plugins {
     kotlin("jvm") version "1.4.32"
-    id("io.openliberty.tools.gradle.Liberty") version "3.1.2"
+    id("io.openliberty.tools.gradle.Liberty") version "3.2"
     war
 }
 
@@ -18,7 +18,7 @@ dependencies {
     testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.6.2")
     testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.6.2")
 
-    libertyRuntime("io.openliberty", "openliberty-runtime", "[20.0.0.12,)")
+    libertyRuntime("io.openliberty", "openliberty-runtime", "[21.0.0.6,)")
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_11
