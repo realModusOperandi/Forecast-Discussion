@@ -62,7 +62,12 @@ class DiscussionPage {
         fun createBody(result: String, body: List<Paragraph>): String {
             var text = result
             for (p in body) {
-                text = "$text<p>${p.text}</p>\n"
+                text = if (p.text.trim().startsWith("...") && p.text.trim().endsWith("...")) {
+                    "$text<p><i>${p.text.trim().removePrefix("...").removeSuffix("...")}</i></p>\n"
+                } else {
+                    "$text<p>${p.text}</p>\n"
+                }
+
             }
             return text
         }

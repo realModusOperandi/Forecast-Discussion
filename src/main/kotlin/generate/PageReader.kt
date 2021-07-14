@@ -72,7 +72,7 @@ class PageReader {
 
         fun splitSections(body: List<String>): List<List<String>> {
             var start = 0
-            while (!body[start].startsWith(".")) {
+            while (!body[start].startsWith(".") || body[start].startsWith("...")) {
                 start++
             }
 
@@ -90,11 +90,11 @@ class PageReader {
                     continue
                 }
 
-                if (i < body.size && body[i].startsWith(".")) {
+                if (i < body.size && body[i].startsWith(".") && !body[i].startsWith("...")) {
                     val section: MutableList<String> = mutableListOf()
                     section.add(util.formatBody(body[i]))
                     i++
-                    while (i < body.size && (!body[i].startsWith(".") || body[i].startsWith("&&"))) {
+                    while (i < body.size && (!body[i].startsWith(".") || body[i].startsWith("...") || body[i].startsWith("&&"))) {
                         section.add(util.formatBody(body[i]))
                         i++
                     }
