@@ -6,7 +6,7 @@ fun endPage(page: String): String {
 }
 
 fun startHTML(input: String): String {
-    return "$input<html>\n"
+    return "$input<html lang=\"en-US\">\n"
 }
 
 fun addEndHTML(page: String): String {

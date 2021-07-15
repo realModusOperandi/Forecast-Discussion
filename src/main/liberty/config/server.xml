@@ -9,7 +9,7 @@
     <keyStore id="defaultKeyStore" password="secret2" />
     <quickStartSecurity userName="admin" userPassword="admin"/>
 
-    <webApplication location="ForecastDiscussions.war" contextRoot="/" ></webApplication>
+    <webApplication location="ForecastDiscussions.war" contextRoot="/"/>
 
 </server>
 

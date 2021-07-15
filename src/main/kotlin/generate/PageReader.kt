@@ -10,14 +10,14 @@ class PageReader {
             return Page(getTitle(body), getSections(sectionsText), getListSections(sectionsText))
         }
 
-        fun getTitle(body: List<String>): Title {
+        private fun getTitle(body: List<String>): Title {
             val start = 0
             val title = body[start]
             val subtitles = body.subList(start + 1, util.findEndOfTitle(body, start))
             return Title(title, subtitles)
         }
 
-        fun getSections(body: List<String>): List<Section> {
+        private fun getSections(body: List<String>): List<Section> {
             val sectionTexts = splitSections(body)
             val sections = mutableListOf<Section>()
 
@@ -50,7 +50,7 @@ class PageReader {
             return sections.toList()
         }
 
-        fun getListSections(body: List<String>): List<ListSection> {
+        private fun getListSections(body: List<String>): List<ListSection> {
             val sectionTexts = splitSections(body)
             val sections = mutableListOf<ListSection>()
 
@@ -70,7 +70,7 @@ class PageReader {
             return sections.toList()
         }
 
-        fun splitSections(body: List<String>): List<List<String>> {
+        private fun splitSections(body: List<String>): List<List<String>> {
             var start = 0
             while (!body[start].startsWith(".") || body[start].startsWith("...")) {
                 start++

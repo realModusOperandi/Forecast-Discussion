@@ -7,7 +7,7 @@ import util.*
 class MarkupTest {
     @Test
     fun testStartHTML() {
-        val valid = "$SOME_TEST_STRING<html>\n"
+        val valid = "$SOME_TEST_STRING<html lang=\"en-US\">\n"
         val result = startHTML(SOME_TEST_STRING)
         assertEquals(valid, result, getErrorMessage(valid, result))
     }

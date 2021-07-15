@@ -12,7 +12,7 @@ function updateNav(scroll_pos) {
     }
 }
 
-window.addEventListener('scroll', e => {
+window.addEventListener('scroll', () => {
     last_known_scroll_position = window.scrollY;
 
     if (!ticking) {
@@ -25,7 +25,7 @@ window.addEventListener('scroll', e => {
     }
 });
 
-window.onload = e => {
+window.onload = () => {
     let navcontainer = document.getElementById('nav-bg');
     navcontainer.style.transition = 'none';
     updateNav(window.scrollY);

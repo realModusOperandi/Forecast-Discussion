@@ -16,7 +16,7 @@ class DiscussionPage {
             return result
         }
 
-        fun createTitle(result: String, page: Page): String {
+        private fun createTitle(result: String, page: Page): String {
             var title = util.addStartDiv("", className = "title-bg")
             title = util.addStartDiv(title, "titlecontainer")
             title = util.addStartDiv(title, "title")
@@ -30,7 +30,7 @@ class DiscussionPage {
             return result + title
         }
 
-        fun createContent(result: String, page: Page, randomQuote: Boolean): String {
+        private fun createContent(result: String, page: Page, randomQuote: Boolean): String {
             var content = result
             content = util.addStartDiv(content, "container")
             content = util.addStartDiv(content, "content")
@@ -49,7 +49,7 @@ class DiscussionPage {
             return content
         }
 
-        fun createHeading(result: String, heading: Title): String {
+        private fun createHeading(result: String, heading: Title): String {
             val mainHeading: String = heading.title
             var head = "$result<h3>$mainHeading</h3>\n"
 
@@ -59,7 +59,7 @@ class DiscussionPage {
             return head
         }
 
-        fun createBody(result: String, body: List<Paragraph>): String {
+        private fun createBody(result: String, body: List<Paragraph>): String {
             var text = result
             for (p in body) {
                 text = if (p.text.trim().startsWith("...") && p.text.trim().endsWith("...")) {
@@ -72,7 +72,7 @@ class DiscussionPage {
             return text
         }
 
-        fun createWarnings(result: String, items: List<String>): String {
+        private fun createWarnings(result: String, items: List<String>): String {
             var list = "$result<ul>\n"
 
             for ((i, item) in items.withIndex()) {
@@ -102,7 +102,7 @@ class DiscussionPage {
             return list
         }
 
-        fun beginPage(): String {
+        private fun beginPage(): String {
             var page = util.startHTML("")
             page = util.addStartHead(page)
             page = util.addHTMLTitle(page, "Area Forecast Discussion")
@@ -116,7 +116,7 @@ class DiscussionPage {
             return page
         }
 
-        fun createNav(page: String, office: String): String {
+        private fun createNav(page: String, office: String): String {
             var nav = util.addStartDiv(page, "nav-bg")
             nav = util.addEndDiv(nav)
             nav = util.addStartDiv(nav, "navcontainer")
@@ -132,11 +132,11 @@ class DiscussionPage {
             nav = util.addURL(nav, "?office=DLH", util.addStartDiv("", null, (if (office == "DLH") "current-page" else null)) + "duluth" + util.addEndDiv(""))
             nav = util.addURL(nav, "?office=PSR", util.addStartDiv("", null, (if (office == "PSR") "current-page" else null)) + "phoenix" + util.addEndDiv(""))
             nav = util.addEndDiv(nav)
-            nav = util.addEndDiv(util.addEndDiv(util.addEndDiv(nav)))
+            nav = util.addEndDiv(util.addEndDiv(nav))
             return nav
         }
 
-        fun createFooter(page: String, randomQuote: Boolean): String {
+        private fun createFooter(page: String, randomQuote: Boolean): String {
             val r = Random()
             val footer = ("<div id=\"footercontainer\">\n"
                     + "<div id=\"footer\">\n"

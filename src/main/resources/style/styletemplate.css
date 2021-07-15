@@ -69,17 +69,6 @@ em {
 	font-family: "Avenir Next", "Lato", sans-serif;
 }
 
-
-.navtop {
-	opacity: 0;
-	transition: all .25s;
-}
-
-.navscroll {
-	opacity: 100%;
-	transition: all .25s;
-}
-
 .navlarge {
 	display: flex;
 	align-items: center;
@@ -223,10 +212,6 @@ em {
 }
 
 @media screen and (max-height: 499px) {
-	.titlebackground {
-		height: 100vh;
-	}
-
 	#titlecontainer {
 		height: 100vh;
 	}
@@ -234,7 +219,7 @@ em {
 
 #title {
 	color: white;
-	filter: none();
+	filter: none;
 	width: 800px;
 	max-width: 85%;
 	margin: auto;
