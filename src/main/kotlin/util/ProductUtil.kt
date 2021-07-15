@@ -33,7 +33,7 @@ fun titleCasePrefix(headingText: String): String {
     }
     val prefix = headingText.substring(1, headingText.indexOf("..."))
     val suffix = headingText.substring(headingText.indexOf("..."))
-    return ".${prefix.toLowerCase().capitalize()}$suffix";
+    return ".${prefix.toLowerCase().capitalize()}$suffix"
 }
 
 fun formatBody(body: String): String {
