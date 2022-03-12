@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk16-openj9:ubi as builder
+FROM icr.io/appcafe/ibm-semeru-runtimes:open-17-jdk-ubi as builder
 
 # Assumes build context is entire repo
 WORKDIR /work
@@ -6,7 +6,7 @@ ADD . /work/
 
 RUN ./gradlew test war
 
-FROM openliberty/open-liberty:kernel-slim-java15-openj9-ubi
+FROM icr.io/appcafe/open-liberty:kernel-slim-java17-openj9-ubi
 
 ARG VERBOSE=true
 

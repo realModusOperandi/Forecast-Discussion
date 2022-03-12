@@ -1,5 +1,7 @@
 package util
 
+import java.util.*
+
 fun findEndOfTitle(body: List<String>, startOfTitle: Int): Int {
     return findEndOfHeading(body, startOfTitle)
 }
@@ -29,11 +31,12 @@ fun formatHeading(headingText: String): String {
 fun titleCasePrefix(headingText: String): String {
     if (headingText.contains("WATCHES/WARNINGS/ADVISORIES")) {
         val heading = headingText.substring(4, headingText.indexOf("..."))
-        return "${headingText.substring(0, 4)}${heading.toLowerCase()}..."
+        return "${headingText.substring(0, 4)}${heading.lowercase(Locale.getDefault())}..."
     }
     val prefix = headingText.substring(1, headingText.indexOf("..."))
     val suffix = headingText.substring(headingText.indexOf("..."))
-    return ".${prefix.toLowerCase().capitalize()}$suffix"
+    return ".${prefix.lowercase(Locale.getDefault())
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }}$suffix"
 }
 
 fun formatBody(body: String): String {
