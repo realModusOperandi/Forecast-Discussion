@@ -1,6 +1,7 @@
 package generate
 
 import model.*
+import java.util.*
 
 class PageReader {
     companion object {
@@ -22,7 +23,7 @@ class PageReader {
             val sections = mutableListOf<Section>()
 
             for (st in sectionTexts) {
-                if (st[0].toLowerCase().contains("watches")) {
+                if (st[0].lowercase(Locale.getDefault()).contains("watches")) {
                     // Watches section goes in list sections
                     continue
                 }
@@ -55,7 +56,7 @@ class PageReader {
             val sections = mutableListOf<ListSection>()
 
             for (st in sectionTexts) {
-                if (!st[0].toLowerCase().contains("watches")) {
+                if (!st[0].lowercase(Locale.getDefault()).contains("watches")) {
                     // Ignore non watches section
                     continue
                 }

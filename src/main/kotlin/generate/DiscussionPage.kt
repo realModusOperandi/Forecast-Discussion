@@ -20,7 +20,7 @@ class DiscussionPage {
             var title = util.addStartDiv("", className = "title-bg")
             title = util.addStartDiv(title, "titlecontainer")
             title = util.addStartDiv(title, "title")
-            title = "$title<h2>${page.title.title.toLowerCase()}</h2>\n"
+            title = "$title<h2>${page.title.title.lowercase(Locale.getDefault())}</h2>\n"
             for (subtitle in page.title.subtitles) {
                 title = "$title<em>$subtitle</em><br/>\n"
             }
@@ -76,14 +76,14 @@ class DiscussionPage {
             var list = "$result<ul>\n"
 
             for ((i, item) in items.withIndex()) {
-                if (item.toLowerCase().startsWith("none")) {
+                if (item.lowercase(Locale.getDefault()).startsWith("none")) {
                     list = "$list<li>None.</li>\n"
                     break
                 }
                 val parts: Array<String> = item.split(("\\.\\.\\.").toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 if (parts.size == 2) {
                     list += "<li>" + (if (util.states.containsKey(parts[0])) util.states[parts[0]] else parts[0])
-                    if (parts[1].toLowerCase().startsWith("none")) {
+                    if (parts[1].lowercase(Locale.getDefault()).startsWith("none")) {
                         list = "$list: None.\n"
                     } else {
                         list = "$list\n<ul>\n"
