@@ -13,7 +13,7 @@ spec:
       default: ""
     - name: branch
       description: the branch for the git repo
-      default: "master"
+      default: "main"
     - name: revision
       description: the git revision/commit for the git repo
       default: ""
@@ -65,7 +65,7 @@ spec:
       default: "0"
     - name: port
       description: port where the application is listening
-      default: "http1:8080"
+      default: "http1:9080"
     - name: service-bindings
       description: service binding JSON for the application deployment
       default: "{}"
