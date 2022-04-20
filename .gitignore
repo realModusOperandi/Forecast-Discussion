@@ -6,5 +6,7 @@ build
 /.classpath
 /.project
 /.settings/org.eclipse.buildship.core.prefs
+launchConfigurations/
 /Forecast Discussions.iml
 .DS_Store
+.history
