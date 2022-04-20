@@ -12,7 +12,7 @@ spec:
       default: ""
     - name: branch
       description: the branch for the git repo
-      default: "master"
+      default: "main"
     - name: revision
       description: the git revision/commit for the git repo
       default: ""
@@ -64,7 +64,7 @@ spec:
       default: "0"
     - name: port
       description: port where the application is listening
-      default: "http1:8080"
+      default: "http1:9080"
     - name: service-bindings
       description: JSON object of a map of names to services instances to be bound to the application
       default: "{}"
@@ -171,13 +171,7 @@ spec:
       params:
         - name: tests-script
           value: |
-            if [ -f ./test/run-tests.sh ]; then
-              source ./test/run-tests.sh
-              echo -n $FILE_LOCATIONS > $(results.test-result-file-paths.path)
-              echo -n $TEST_TYPES > $(results.test-types.path)
-            else
-              echo "Test runner script not found: ./test/run-tests.sh"
-            fi
+            ./gradlew test
       workspaces:
         - name: artifacts
           workspace: pipeline-ws
