@@ -51,23 +51,22 @@ class DiscussionPage {
 
         private fun createHeading(result: String, heading: Title): String {
             val mainHeading: String = heading.title
-            var head = "$result<h3>$mainHeading</h3>\n"
+            var head = "$result<div class=\"sectionhead\"><h3>$mainHeading</h3>\n"
 
             for (subheading in heading.subtitles) {
                 head += "<em>$subheading</em>\n"
             }
+            head += "</div>\n"
             return head
         }
 
         private fun createBody(result: String, body: List<Paragraph>): String {
             var text = result
             for (p in body) {
-                text = if (p.text.trim().startsWith("...") && p.text.trim().endsWith("...")) {
-                    "$text<p><i>${p.text.trim().removePrefix("...").removeSuffix("...")}</i></p>\n"
-                } else {
-                    "$text<p>${p.text}</p>\n"
+                text = when {
+                    p.subheader -> "$text<h4>${util.formatSubheader(p.text)}</h4>\n"
+                    else -> "$text<p>${p.text}</p>\n"
                 }
-
             }
             return text
         }

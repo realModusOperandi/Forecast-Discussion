@@ -45,7 +45,7 @@ class PageReader {
                         string += "$p "
                     }
                 }
-                val paragraphs = paras.filter { it.trim() != "&&" }.map { Paragraph(it) }
+                val paragraphs = paras.filter { it.trim() != "&&" }.map { Paragraph(it, it.trim().endsWith(":")) }
                 sections.add(Section(title, paragraphs))
             }
             return sections.toList()

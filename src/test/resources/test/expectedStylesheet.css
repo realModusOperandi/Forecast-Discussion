@@ -16,7 +16,7 @@ body {
 	flex-flow: column;
 }
 
-h2, h3 {
+h2, h3, h4 {
 	margin-bottom: 0;
 }
 
@@ -30,9 +30,14 @@ h3 {
 	font-weight: bold;
 }
 
+h4 {
+	margin-top: 1.5em;
+	font-weight: bold;
+}
+
 p {
-	margin-bottom: 0;
-	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-top: 0;
 
 	padding: 0;
 }
@@ -283,6 +288,10 @@ em {
 
 #content em {
 	font-weight: 400;
+}
+
+.sectionhead {
+	margin-bottom: 1em;
 }
 
 #footercontainer {

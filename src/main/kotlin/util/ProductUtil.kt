@@ -36,11 +36,15 @@ fun titleCasePrefix(headingText: String): String {
     val prefix = headingText.substring(1, headingText.indexOf("..."))
     val suffix = headingText.substring(headingText.indexOf("..."))
     return ".${prefix.lowercase(Locale.getDefault())
-        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }}$suffix"
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }}$suffix";
 }
 
 fun formatBody(body: String): String {
     return body.trim().trim('&').trim().replace('`', '\'')
+}
+
+fun formatSubheader(subheader: String): String {
+    return subheader.lowercase(Locale.getDefault()).trim().removeSuffix(":").trim().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 }
 
 val footers = arrayOf("oh hey", "hey", "what's up", "hope the weather's real nice bb", "don't get rained on", "nice", "storm's comin", "it'll blow over eventually", "better lay low", "hail, traveler")
