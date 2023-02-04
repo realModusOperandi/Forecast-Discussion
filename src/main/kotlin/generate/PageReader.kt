@@ -42,10 +42,10 @@ class PageReader {
                         paras.add(string)
                         string = ""
                     } else {
-                        string += "$p "
+                        string += "$p\n"
                     }
                 }
-                val paragraphs = paras.filter { it.trim() != "&&" }.map { Paragraph(it, it.trim().endsWith(":")) }
+                val paragraphs = paras.filter { it.trim() != "&&" }.map { Paragraph(it, !it.trim().contains("\n")) }
                 sections.add(Section(title, paragraphs))
             }
             return sections.toList()
