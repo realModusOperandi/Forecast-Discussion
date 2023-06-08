@@ -2,7 +2,7 @@ import io.openliberty.tools.gradle.extensions.ServerExtension
 import kotlin.collections.mapOf
 
 plugins {
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.8.20"
     id("io.openliberty.tools.gradle.Liberty") version "3.5.2"
     war
 }
@@ -12,20 +12,20 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.20")
     providedCompile("javax", "javaee-api", "8.0")
 
-    testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.8.2")
-    testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.8.2")
+    testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.9.3")
+    testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.9.3")
 
     libertyRuntime("io.openliberty", "openliberty-runtime", "[22.0.0.12,)")
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_11
-java.targetCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_17
+java.targetCompatibility = JavaVersion.VERSION_17
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.jvmTarget = "17"
 }
 
 tasks.withType<Test> {

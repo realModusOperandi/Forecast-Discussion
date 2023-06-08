@@ -65,7 +65,7 @@ class DiscussionPage {
             for (p in body) {
                 text = when {
                     p.subheader -> "$text<h4>${util.formatSubheader(p.text)}</h4>\n"
-                    else -> "$text<p>${p.text}</p>\n"
+                    else -> "$text<p>${util.makeUrlsClickable(p.text)}</p>\n"
                 }
             }
             return text

@@ -47,5 +47,10 @@ fun formatSubheader(subheader: String): String {
     return subheader.lowercase(Locale.getDefault()).trim().removeSuffix(":").trim().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 }
 
+fun makeUrlsClickable(p: String): String {
+    val urlRegex = Regex("https?://[^\\s]+")
+    return urlRegex.replace(p, "<a href=\"$0\">$0</a>")
+}
+
 val footers = arrayOf("oh hey", "hey", "what's up", "hope the weather's real nice bb", "don't get rained on", "nice", "storm's comin", "it'll blow over eventually", "better lay low", "hail, traveler")
 var states: Map<String, String> = mapOf("MN" to "Minnesota", "WI" to "Wisconsin", "IA" to "Iowa", "LS" to "Lake Superior", "AZ" to "Arizona", "CA" to "California")
