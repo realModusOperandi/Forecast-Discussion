@@ -1,6 +1,7 @@
 package generate
 
 import model.*
+import java.util.logging.Logger
 import java.util.*
 
 class PageReader {
@@ -42,13 +43,28 @@ class PageReader {
                         paras.add(string)
                         string = ""
                     } else {
+                        Logger.getLogger("fd.generate").finest("Processing line for paragraph: \"${p}\"")
                         string += "$p\n"
                     }
                 }
-                val paragraphs = paras.filter { it.trim() != "&&" }.map { Paragraph(it, !it.trim().contains("\n")) }
+                val paragraphs = paras.filter { it.trim() != "&&" }.map { Paragraph(it, isSubheader(it)) }
                 sections.add(Section(title, paragraphs))
             }
             return sections.toList()
+        }
+
+        private fun isSubheader(it: String): Boolean {
+            Logger.getLogger("fd.generate").entering(this::class.java.name, "isSubheader", "\n$it")
+
+            var result = when {
+                it.startsWith("- ") -> false
+                it.trim().contains("\n") -> false
+                else -> true
+            }
+
+            Logger.getLogger("fd.generate").exiting(this::class.java.name, "isSubheader", result)
+
+            return result
         }
 
         private fun getListSections(body: List<String>): List<ListSection> {

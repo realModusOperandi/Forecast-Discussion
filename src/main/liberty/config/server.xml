@@ -11,5 +11,8 @@
 
     <webApplication location="ForecastDiscussions.war" contextRoot="/"/>
 
+    <!-- Tracing if needed -->
+    <!-- <logging traceSpecification="*=info:fd.generate=finest" /> -->
+
 </server>
 
