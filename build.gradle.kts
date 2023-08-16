@@ -2,8 +2,8 @@ import io.openliberty.tools.gradle.extensions.ServerExtension
 import kotlin.collections.mapOf
 
 plugins {
-    kotlin("jvm") version "1.8.20"
-    id("io.openliberty.tools.gradle.Liberty") version "3.5.2"
+    kotlin("jvm") version "1.9.0"
+    id("io.openliberty.tools.gradle.Liberty") version "3.6.2"
     war
 }
 
@@ -13,12 +13,12 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.20")
-    providedCompile("javax", "javaee-api", "8.0")
+    providedCompile("jakarta.platform", "jakarta.jakartaee-api", "10.0.0")
 
-    testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.9.3")
-    testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.9.3")
+    testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.10.0")
+    testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.10.0")
 
-    libertyRuntime("io.openliberty", "openliberty-runtime", "[22.0.0.12,)")
+    libertyRuntime("io.openliberty", "openliberty-runtime", "[23.0.0.6,)")
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_17
