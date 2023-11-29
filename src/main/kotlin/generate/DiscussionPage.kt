@@ -127,8 +127,8 @@ class DiscussionPage {
             nav += "FD"
             nav = util.addEndDiv(nav)
             nav = util.addStartDiv(nav, className = "navsmall")
+            nav = util.addURL(nav, "?office=MPX", util.addStartDiv("", null, (if (office == "MPX") "current-page" else null)) + "minneapolis" + util.addEndDiv(""))
             nav = util.addURL(nav, "?office=ARX", util.addStartDiv("", null, (if (office == "ARX") "current-page" else null)) + "la crosse" + util.addEndDiv(""))
-            nav = util.addURL(nav, "?office=DLH", util.addStartDiv("", null, (if (office == "DLH") "current-page" else null)) + "duluth" + util.addEndDiv(""))
             nav = util.addURL(nav, "?office=PSR", util.addStartDiv("", null, (if (office == "PSR") "current-page" else null)) + "phoenix" + util.addEndDiv(""))
             nav = util.addEndDiv(nav)
             nav = util.addEndDiv(util.addEndDiv(nav))

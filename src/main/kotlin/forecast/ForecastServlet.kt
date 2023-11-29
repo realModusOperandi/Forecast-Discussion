@@ -26,7 +26,7 @@ class CurrentForecastServlet : HttpServlet() {
     @Throws(ServletException::class, IOException::class)
     override fun doGet(request: HttpServletRequest, response: HttpServletResponse) {
         val parameters = request.parameterMap
-        var office = "ARX"
+        var office = "MPX"
         if (parameters.containsKey("office")) {
             office = parameters["office"]!![0]
         }

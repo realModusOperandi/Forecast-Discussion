@@ -2,7 +2,7 @@ FROM icr.io/appcafe/ibm-semeru-runtimes:open-17-jdk-ubi as builder
 
 # Assumes build context is entire repo
 WORKDIR /work
-ADD . /work/
+COPY --chown=1001:0 . /work/
 
 RUN ./gradlew test war
 
